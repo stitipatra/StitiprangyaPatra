@@ -4,6 +4,13 @@ import { Link } from "react-router";
 import Button from "../components/common/Button";
 import { siteConfig } from "../data/site";
 import ExploreDashboard from "../components/home/ExploreDashboard";
+import FeaturedExperience from "../components/home/FeaturedExperience";
+import FeaturedProjects from "../components/home/FeaturedProjects";
+import AboutPreview from "../components/home/AboutPreview";
+import JourneyPreview from "../components/home/JourneyPreview";
+import BeyondCodePreview from "../components/home/BeyondCodePreview";
+import GalleryPreview from "../components/home/GalleryPreview";
+import ContactCTA from "../components/home/ContactCTA";
 
 function HomePage() {
   return (
@@ -86,6 +93,13 @@ function HomePage() {
         </div>
       </section>
       <ExploreDashboard />
+      <FeaturedExperience />
+      <FeaturedProjects />
+      <AboutPreview />
+      <JourneyPreview />
+      <BeyondCodePreview />
+      <GalleryPreview />
+      <ContactCTA />
     </>
   );
 }
