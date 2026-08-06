@@ -1,5 +1,13 @@
+import ProjectsGrid from "../components/projects/ProjectsGrid";
+import ProjectsHero from "../components/projects/ProjectsHero";
+
 function ProjectsPage() {
-  return <h1>Projects</h1>;
+  return (
+    <>
+      <ProjectsHero />
+      <ProjectsGrid />
+    </>
+  );
 }
 
 export default ProjectsPage;
