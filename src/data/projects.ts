@@ -1,11 +1,30 @@
+export type ProjectCategory =
+  | "AI"
+  | "Backend"
+  | "Data"
+  | "FinTech"
+  | "Mathematics"
+  | "Signal Processing"
+  | "Product";
+
+export type ProjectStatus = "Completed" | "In Progress" | "Archived";
+
 export interface ProjectItem {
   id: string;
   title: string;
   subtitle: string;
-  category: string;
+
+  category: ProjectCategory;
+  tags: string[];
+
   period: string;
+  status: ProjectStatus;
 
   featured?: boolean;
+
+  role?: string;
+  teamSize?: string;
+  duration?: string;
 
   summary: string;
   problem: string;
@@ -19,6 +38,7 @@ export interface ProjectItem {
 
   github?: string;
   demo?: string;
+  video?: string;
 
   coverImage?: string;
   screenshots?: string[];
@@ -29,9 +49,27 @@ export const projects: ProjectItem[] = [
     id: "voxbridge",
     title: "VoxBridge",
     subtitle: "Offline multilingual media translation platform",
-    category: "Applied AI · Media · Language",
+
+    category: "AI",
+
+    tags: [
+      "Offline AI",
+      "Media",
+      "Translation",
+      "Speech",
+      "Multilingual",
+      "FastAPI",
+      "FFmpeg",
+    ],
+
     period: "2026",
+    status: "Completed",
+
     featured: true,
+
+    role: "Full-stack / AI Engineer",
+    teamSize: "Personal Project",
+    duration: "Ongoing development",
 
     summary:
       "An offline translation platform for video, audio and documents, combining transcription, multilingual translation, subtitle generation, voice synthesis and media synchronization.",
@@ -79,8 +117,9 @@ export const projects: ProjectItem[] = [
 
     github: "https://github.com/stitipatra/VoxBridge",
     demo: "",
+    video: "",
 
-    coverImage: "/images/projects/voxbridge/cover.jpg",
+    coverImage: "/images/projects/voxbridge/cover.webp",
     screenshots: [],
   },
 
@@ -88,9 +127,26 @@ export const projects: ProjectItem[] = [
     id: "arthamitra",
     title: "ArthaMitra",
     subtitle: "AI-powered financial digital twin",
-    category: "FinTech · AI · Product",
+
+    category: "FinTech",
+
+    tags: [
+      "AI",
+      "Financial Modelling",
+      "Digital Twin",
+      "Simulation",
+      "Product",
+      "Streamlit",
+    ],
+
     period: "2026",
+    status: "Completed",
+
     featured: true,
+
+    role: "Product / Backend / AI",
+    teamSize: "Hackathon Team",
+    duration: "Hackathon Build",
 
     summary:
       "A financial intelligence platform that models a user’s current financial health, future decisions, behavioural patterns and personalized recommendations.",
@@ -135,8 +191,9 @@ export const projects: ProjectItem[] = [
 
     github: "https://github.com/stitipatra/ArthaMitra",
     demo: "",
+    video: "",
 
-    coverImage: "/images/projects/arthamitra/cover.jpg",
+    coverImage: "/images/projects/arthamitra/cover.webp",
     screenshots: [],
   },
 
@@ -144,8 +201,22 @@ export const projects: ProjectItem[] = [
     id: "digital-communication-system",
     title: "Digital Communication System",
     subtitle: "End-to-end signal transmission simulation",
-    category: "MATLAB · Signal Processing",
+
+    category: "Signal Processing",
+
+    tags: [
+      "MATLAB",
+      "Digital Communication",
+      "Modulation",
+      "Noise Simulation",
+      "Signal Processing",
+    ],
+
     period: "2023",
+    status: "Completed",
+
+    role: "Engineering Project",
+    teamSize: "Academic Project",
 
     summary:
       "A MATLAB simulation for transmitting text, images, voice and random bit streams through a noisy digital communication channel.",
@@ -184,17 +255,31 @@ export const projects: ProjectItem[] = [
 
     github: "",
     demo: "",
+    video: "",
 
-    coverImage: "/images/projects/digital-communication/cover.jpg",
+    coverImage: "/images/projects/digital-communication/cover.webp",
     screenshots: [],
   },
-
   {
     id: "traffic-flow-optimization",
     title: "Traffic Flow Optimization",
     subtitle: "Nonlinear dynamical-system model for road congestion",
-    category: "Mathematical Modelling · ODEs",
+
+    category: "Mathematics",
+
+    tags: [
+      "ODEs",
+      "Nonlinear Systems",
+      "Traffic Modelling",
+      "Stability Analysis",
+      "MATLAB",
+    ],
+
     period: "2022",
+    status: "Completed",
+
+    role: "Mathematical Modelling Project",
+    teamSize: "Academic Project",
 
     summary:
       "A mathematical model of traffic flow using a three-dimensional nonlinear dynamical system to study congestion, stability and control behaviour.",
@@ -233,8 +318,9 @@ export const projects: ProjectItem[] = [
 
     github: "",
     demo: "",
+    video: "",
 
-    coverImage: "/images/projects/traffic-flow/cover.jpg",
+    coverImage: "/images/projects/traffic-flow/cover.webp",
     screenshots: [],
   },
 
@@ -242,8 +328,16 @@ export const projects: ProjectItem[] = [
     id: "voting-theory",
     title: "Voting Theory Analysis",
     subtitle: "Game-theoretic comparison of electoral systems",
-    category: "Game Theory · Mathematics",
+
+    category: "Mathematics",
+
+    tags: ["Game Theory", "Voting Systems", "Payoff Modelling", "Fairness"],
+
     period: "2023",
+    status: "Completed",
+
+    role: "Game Theory Project",
+    teamSize: "Academic Project",
 
     summary:
       "A comparison of single-winner and multi-winner voting systems using voter satisfaction and game-theoretic reasoning.",
@@ -281,8 +375,9 @@ export const projects: ProjectItem[] = [
 
     github: "",
     demo: "",
+    video: "",
 
-    coverImage: "/images/projects/voting-theory/cover.jpg",
+    coverImage: "/images/projects/voting-theory/cover.webp",
     screenshots: [],
   },
 
@@ -290,8 +385,22 @@ export const projects: ProjectItem[] = [
     id: "social-media-analysis",
     title: "Social Media Analysis Tool",
     subtitle: "Object-oriented engagement analytics simulator",
-    category: "Java · OOP · Analytics",
+
+    category: "Backend",
+
+    tags: [
+      "Java",
+      "OOP",
+      "Analytics",
+      "Simulation",
+      "Object-Oriented Programming",
+    ],
+
     period: "2024",
+    status: "Completed",
+
+    role: "Backend Developer",
+    teamSize: "Academic Project",
 
     summary:
       "An object-oriented tool for modelling social-media engagement, audience behaviour and campaign performance for a marketing agency.",
@@ -329,8 +438,9 @@ export const projects: ProjectItem[] = [
 
     github: "",
     demo: "",
+    video: "",
 
-    coverImage: "/images/projects/social-media-analysis/cover.jpg",
+    coverImage: "/images/projects/social-media-analysis/cover.webp",
     screenshots: [],
   },
 ];
