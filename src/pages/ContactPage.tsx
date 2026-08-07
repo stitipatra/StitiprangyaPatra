@@ -1,5 +1,13 @@
+import ContactHero from "../components/contact/ContactHero";
+import ContactLinks from "../components/contact/ContactLinks";
+
 function ContactPage() {
-  return <h1>Contact</h1>;
+  return (
+    <>
+      <ContactHero />
+      <ContactLinks />
+    </>
+  );
 }
 
 export default ContactPage;

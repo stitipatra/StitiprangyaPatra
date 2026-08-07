@@ -1,5 +1,13 @@
+import AchievementsGrid from "../components/achievements/AchievementsGrid";
+import AchievementsHero from "../components/achievements/AchievementsHero";
+
 function AchievementsPage() {
-  return <h1>Achievements</h1>;
+  return (
+    <>
+      <AchievementsHero />
+      <AchievementsGrid />
+    </>
+  );
 }
 
 export default AchievementsPage;

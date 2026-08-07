@@ -1,0 +1,210 @@
+export type GalleryCategory = "People" | "Activity" | "Place" | "Milestone";
+
+export interface GalleryImage {
+  id: string;
+
+  src: string;
+  alt: string;
+
+  title?: string;
+  caption?: string;
+
+  category: GalleryCategory;
+
+  tags: string[];
+
+  people?: string[];
+
+  year?: string;
+  location?: string;
+
+  featured?: boolean;
+}
+
+export const galleryImages: GalleryImage[] = [
+  {
+    id: "football-state",
+    src: "/images/gallery/football/state-tournament.webp",
+    alt: "State-level football tournament",
+    title: "State Football",
+    caption: "One of the competitive football chapters that shaped me.",
+    category: "Activity",
+
+    tags: ["Football", "Sports", "State Tournament"],
+
+    people: ["Football Team"],
+
+    featured: true,
+  },
+
+  {
+    id: "bits-football",
+    src: "/images/gallery/football/bits-team.webp",
+    alt: "BITS Pilani Goa football team",
+    title: "BITS Football Club",
+    category: "Activity",
+
+    tags: ["Football", "BITS", "Friends"],
+
+    people: ["Football Team", "College Friends"],
+  },
+
+  {
+    id: "running-race",
+    src: "/images/gallery/running/race.webp",
+    alt: "Running during a road race",
+    title: "Race Day",
+    caption: "Long-distance running has stayed with me for years.",
+    category: "Activity",
+
+    tags: ["Running", "Athletics", "Race"],
+
+    featured: true,
+  },
+
+  {
+    id: "tamana-run",
+    src: "/images/gallery/running/tamana.webp",
+    alt: "Airtel Delhi Half Marathon Tamana fundraiser",
+    title: "Running for Tamana",
+    caption: "Raised ₹52,500 through crowdfunding.",
+    category: "Milestone",
+
+    tags: ["Running", "Tamana", "Fundraising", "Community"],
+
+    year: "2016",
+
+    featured: true,
+  },
+
+  {
+    id: "graduation",
+    src: "/images/gallery/bits/graduation.webp",
+    alt: "BITS Pilani Goa graduation",
+    title: "Graduation",
+    caption: "Closing five years at BITS Pilani Goa.",
+    category: "Milestone",
+
+    tags: ["BITS", "Graduation", "College"],
+
+    people: ["Family", "College Friends"],
+
+    year: "2025",
+
+    featured: true,
+  },
+
+  {
+    id: "bits-friends",
+    src: "/images/gallery/people/college-friends.webp",
+    alt: "College friends at BITS Pilani Goa",
+    title: "BITS Friends",
+    category: "People",
+
+    tags: ["Friends", "BITS", "College"],
+
+    people: ["College Friends"],
+  },
+
+  {
+    id: "family",
+    src: "/images/gallery/people/family.webp",
+    alt: "Family",
+    title: "Family",
+    category: "People",
+
+    tags: ["Family"],
+
+    people: ["Family"],
+
+    featured: true,
+  },
+
+  {
+    id: "sister",
+    src: "/images/gallery/people/sister.webp",
+    alt: "With my sister",
+    title: "Sister",
+    category: "People",
+
+    tags: ["Family", "Sister"],
+
+    people: ["Sister"],
+
+    featured: true,
+  },
+
+  {
+    id: "best-friends",
+    src: "/images/gallery/people/best-friends.webp",
+    alt: "Best friends",
+    title: "Best Friends",
+    category: "People",
+
+    tags: ["Friends", "Best Friends"],
+
+    people: ["Best Friends"],
+  },
+
+  {
+    id: "paragliding",
+    src: "/images/gallery/travel/paragliding.webp",
+    alt: "Paragliding",
+    title: "Paragliding",
+    category: "Activity",
+
+    tags: ["Travel", "Adventure", "Paragliding"],
+  },
+
+  {
+    id: "kayaking",
+    src: "/images/gallery/travel/kayaking.webp",
+    alt: "Kayaking",
+    title: "Kayaking",
+    category: "Activity",
+
+    tags: ["Travel", "Adventure", "Kayaking"],
+  },
+
+  {
+    id: "rafting",
+    src: "/images/gallery/travel/rafting.webp",
+    alt: "River rafting",
+    title: "River Rafting",
+    category: "Activity",
+
+    tags: ["Travel", "Adventure", "Rafting"],
+  },
+
+  {
+    id: "parasailing",
+    src: "/images/gallery/travel/parasailing.webp",
+    alt: "Parasailing",
+    title: "Parasailing",
+    category: "Activity",
+
+    tags: ["Travel", "Adventure", "Parasailing"],
+  },
+
+  {
+    id: "travel-india",
+    src: "/images/gallery/travel/india-trip.webp",
+    alt: "Travel in India",
+    title: "Exploring India",
+    category: "Place",
+
+    tags: ["Travel", "India"],
+  },
+
+  {
+    id: "hackathon",
+    src: "/images/gallery/hackathons/hackathon.webp",
+    alt: "Hackathon team",
+    title: "Hackathon Build",
+    category: "Milestone",
+
+    tags: ["Hackathon", "Projects", "Friends"],
+
+    people: ["Hackathon Team"],
+  },
+];

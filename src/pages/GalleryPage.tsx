@@ -1,5 +1,13 @@
+import GalleryGrid from "../components/gallery/GalleryGrid";
+import GalleryHero from "../components/gallery/GalleryHero";
+
 function GalleryPage() {
-  return <h1>Gallery</h1>;
+  return (
+    <>
+      <GalleryHero />
+      <GalleryGrid />
+    </>
+  );
 }
 
 export default GalleryPage;
