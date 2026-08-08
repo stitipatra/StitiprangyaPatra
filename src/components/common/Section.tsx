@@ -16,23 +16,23 @@ function Section({
   className = "",
 }: SectionProps) {
   return (
-    <section className={`container py-24 ${className}`}>
+    <section className={`container py-16 sm:py-20 ${className}`}>
       {(eyebrow || title || description) && (
-        <div className="mb-12 max-w-3xl">
+        <div className="mb-10 max-w-3xl">
           {eyebrow && (
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-primary)]">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-primary)]">
               {eyebrow}
             </p>
           )}
 
           {title && (
-            <h2 className="text-4xl font-bold tracking-[-0.05em] sm:text-5xl">
+            <h2 className="text-3xl font-bold tracking-[-0.045em] sm:text-4xl lg:text-[2.75rem]">
               {title}
             </h2>
           )}
 
           {description && (
-            <p className="mt-5 text-lg leading-8 text-[var(--color-text-muted)]">
+            <p className="mt-4 max-w-2xl text-base leading-7 text-[var(--color-text-muted)] sm:text-lg">
               {description}
             </p>
           )}

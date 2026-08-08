@@ -1,12 +1,8 @@
-import type {
-  ButtonHTMLAttributes,
-  ReactNode,
-} from "react";
+import type { ButtonHTMLAttributes, ReactNode } from "react";
 
 type ButtonVariant = "primary" | "secondary" | "ghost";
 
-interface ButtonProps
-  extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   variant?: ButtonVariant;
 }
@@ -14,10 +10,11 @@ interface ButtonProps
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
     "bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-hover)]",
+
   secondary:
     "border border-[var(--color-border)] bg-white text-[var(--color-text)] hover:border-[var(--color-text)]",
-  ghost:
-    "bg-transparent text-[var(--color-text)] hover:bg-black/5",
+
+  ghost: "bg-transparent text-[var(--color-text)] hover:bg-black/5",
 };
 
 function Button({
@@ -32,8 +29,8 @@ function Button({
       type={type}
       className={`
         inline-flex items-center justify-center gap-2
-        rounded-full px-5 py-3
-        font-semibold
+        rounded-full px-4.5 py-2.5
+        text-sm font-semibold
         transition duration-200
         ${variantClasses[variant]}
         ${className}

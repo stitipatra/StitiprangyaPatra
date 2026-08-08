@@ -63,12 +63,8 @@ const exploreItems = [
 
 function ExploreDashboard() {
   return (
-  <Section
-    eyebrow="Explore"
-    title="More than a résumé."
-    description="Explore my work, projects, academic journey, achievements and the experiences beyond engineering that shaped how I think and build."
-  >
-      <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+    <Section className="py-16 sm:py-20">
+      <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-primary)]">
             Explore
@@ -79,13 +75,13 @@ function ExploreDashboard() {
           </h2>
         </div>
 
-        <p className="max-w-xl text-base leading-7 text-[var(--color-text-muted)]">
+        <p className="max-w-xl text-base leading-7 text-[var(--color-text-muted)] lg:justify-self-end">
           Explore my work, projects, academic journey, achievements and the
           experiences beyond engineering that shaped how I think and build.
         </p>
       </div>
 
-      <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {exploreItems.map((item) => {
           const Icon = item.icon;
 
@@ -93,31 +89,29 @@ function ExploreDashboard() {
             <Link
               key={item.title}
               to={item.path}
-              className="group relative overflow-hidden rounded-[var(--radius-medium)] border border-[var(--color-border)] bg-white p-6 shadow-[var(--shadow-small)] transition duration-300 hover:-translate-y-2 hover:shadow-[var(--shadow-medium)]"
+              className="group relative overflow-hidden rounded-[var(--radius-medium)] border border-[var(--color-border)] bg-white p-5 shadow-[var(--shadow-small)] transition duration-300 hover:-translate-y-1.5 hover:shadow-[var(--shadow-medium)]"
             >
-              <div className="flex items-start justify-between gap-5">
+              <div className="flex items-start justify-between gap-4">
                 <div
-                  className={`flex h-12 w-12 items-center justify-center rounded-2xl ${item.accent}`}
+                  className={`flex h-11 w-11 items-center justify-center rounded-2xl ${item.accent}`}
                 >
-                  <Icon size={22} />
+                  <Icon size={20} />
                 </div>
 
-                <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border)] text-lg transition group-hover:bg-[var(--color-text)] group-hover:text-white">
+                <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border)] text-base transition group-hover:border-[var(--color-text)] group-hover:bg-[var(--color-text)] group-hover:text-white">
                   ↗
                 </span>
               </div>
 
-              <h3 className="mt-8 text-2xl font-bold tracking-[-0.04em]">
+              <h3 className="mt-6 text-xl font-bold tracking-[-0.04em]">
                 {item.title}
               </h3>
 
-              <p className="mt-3 leading-7 text-[var(--color-text-muted)]">
+              <p className="mt-2 text-[15px] leading-7 text-[var(--color-text-muted)]">
                 {item.description}
               </p>
 
-              <div className="mt-7 h-px bg-[var(--color-border)]" />
-
-              <p className="mt-4 text-sm font-semibold text-[var(--color-primary)]">
+              <p className="mt-5 text-sm font-semibold text-[var(--color-primary)]">
                 Open section
               </p>
             </Link>

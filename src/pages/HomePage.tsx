@@ -2,7 +2,6 @@ import { ArrowRight, Download, MapPin, Sparkles } from "lucide-react";
 import { Link } from "react-router";
 
 import Button from "../components/common/Button";
-import { siteConfig } from "../data/site";
 import ExploreDashboard from "../components/home/ExploreDashboard";
 import FeaturedExperience from "../components/home/FeaturedExperience";
 import FeaturedProjects from "../components/home/FeaturedProjects";
@@ -12,25 +11,27 @@ import BeyondCodePreview from "../components/home/BeyondCodePreview";
 import GalleryPreview from "../components/home/GalleryPreview";
 import ContactCTA from "../components/home/ContactCTA";
 
+import { siteConfig } from "../data/site";
+
 function HomePage() {
   return (
     <>
-      <section className="container grid min-h-[calc(100vh-var(--navbar-height))] items-center gap-14 py-16 lg:grid-cols-[1.15fr_0.85fr] lg:py-24">
+      <section className="container grid min-h-[calc(100vh-var(--navbar-height))] gap-12 py-14 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:py-16">
         <div>
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-white px-4 py-2 text-sm font-semibold shadow-[var(--shadow-small)]">
+          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-white px-4 py-2 text-sm font-semibold shadow-[var(--shadow-small)]">
             <Sparkles size={16} className="text-[var(--color-primary)]" />
 
             {siteConfig.tagline}
           </div>
 
-          <h1 className="max-w-4xl text-5xl font-bold leading-[0.94] tracking-[-0.065em] sm:text-7xl lg:text-[5.6rem]">
+          <h1 className="max-w-4xl text-5xl font-bold leading-[0.96] tracking-[-0.06em] sm:text-6xl lg:text-[4.9rem]">
             Building reliable systems
             <br />
             and ambitious
             <span className="text-[var(--color-primary)]"> products.</span>
           </h1>
 
-          <p className="mt-8 max-w-2xl text-lg leading-8 text-[var(--color-text-muted)] sm:text-xl">
+          <p className="mt-7 max-w-2xl text-lg leading-8 text-[var(--color-text-muted)]">
             {siteConfig.introduction}
           </p>
 
@@ -39,7 +40,7 @@ function HomePage() {
             {siteConfig.location}
           </div>
 
-          <div className="mt-9 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-wrap gap-3">
             <Link to="/projects">
               <Button>
                 Explore my work
@@ -55,50 +56,61 @@ function HomePage() {
             </a>
 
             <Link to="/journey">
-              <Button variant="ghost">My journey</Button>
+              <Button variant="secondary">
+                My journey
+                <ArrowRight size={17} />
+              </Button>
             </Link>
           </div>
         </div>
 
-        <div className="relative">
-          <div className="aspect-[4/5] overflow-hidden rounded-[var(--radius-large)] border border-[var(--color-border)] bg-white shadow-[var(--shadow-medium)]">
+        <div className="relative mx-auto w-full max-w-[500px] lg:mx-0 lg:justify-self-end">
+          <div className="aspect-[4/4.6] overflow-hidden rounded-[var(--radius-large)] border border-[var(--color-border)] bg-white shadow-[var(--shadow-medium)]">
             <div className="flex h-full items-center justify-center bg-gradient-to-br from-blue-100 via-white to-orange-100 text-center">
               <div className="px-8">
-                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[var(--color-text-muted)]">
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
                   Portrait placeholder
                 </p>
 
-                <p className="mt-3 text-lg font-semibold">
+                <p className="mt-3 text-base font-semibold">
                   Your main photograph will go here
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="absolute -bottom-5 -left-4 rounded-2xl border border-[var(--color-border)] bg-white px-5 py-4 shadow-[var(--shadow-small)] sm:-left-8">
-            <p className="text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
+          <div className="absolute -bottom-4 left-4 rounded-2xl border border-[var(--color-border)] bg-white px-4 py-3 shadow-[var(--shadow-small)] sm:-left-5">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
               Currently
             </p>
 
-            <p className="mt-1 font-bold">MTS-1 at Nielsen</p>
+            <p className="mt-1 text-sm font-bold">MTS-1 at Nielsen</p>
           </div>
 
-          <div className="absolute -right-3 top-8 rounded-2xl bg-[var(--color-surface-dark)] px-5 py-4 text-white shadow-[var(--shadow-medium)] sm:-right-8">
-            <p className="text-xs uppercase tracking-[0.18em] text-white/60">
+          <div className="absolute -right-2 top-8 rounded-2xl bg-[var(--color-surface-dark)] px-4 py-3 text-white shadow-[var(--shadow-medium)] sm:-right-5">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/55">
               Focus
             </p>
 
-            <p className="mt-1 font-bold">Systems + AI</p>
+            <p className="mt-1 text-sm font-bold">Systems + AI</p>
           </div>
         </div>
       </section>
+
       <ExploreDashboard />
+
       <FeaturedExperience />
+
       <FeaturedProjects />
+
       <AboutPreview />
+
       <JourneyPreview />
+
       <BeyondCodePreview />
+
       <GalleryPreview />
+
       <ContactCTA />
     </>
   );

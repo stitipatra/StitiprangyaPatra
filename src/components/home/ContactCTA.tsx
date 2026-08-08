@@ -7,28 +7,26 @@ import Section from "../common/Section";
 
 function ContactCTA() {
   return (
-    <Section className="pb-24">
-      <div className="overflow-hidden rounded-[40px] bg-neutral-950 px-8 py-16 text-center text-white shadow-[var(--shadow-medium)] md:px-16 md:py-24">
-        <p className="text-sm font-semibold uppercase tracking-[0.28em] text-neutral-400">
+    <Section className="pb-16 pt-10 sm:pb-20">
+      <div className="overflow-hidden rounded-[32px] bg-neutral-950 px-6 py-10 text-center text-white shadow-[var(--shadow-medium)] sm:px-10 sm:py-12 md:px-14">
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-neutral-400">
           Let&apos;s build something meaningful
         </p>
 
-        <h2 className="mx-auto mt-6 max-w-4xl text-4xl font-bold leading-tight tracking-[-0.05em] md:text-6xl">
-          Great software starts with
-          <br />
-          great conversations.
+        <h2 className="mx-auto mt-4 max-w-3xl text-3xl font-bold leading-tight tracking-[-0.05em] sm:text-4xl md:text-5xl">
+          Great software starts with great conversations.
         </h2>
 
-        <p className="mx-auto mt-8 max-w-2xl text-lg leading-8 text-neutral-300">
+        <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-neutral-300">
           Whether it&apos;s backend engineering, distributed systems, applied
           AI, product development or simply an interesting idea, I&apos;d be
           glad to connect.
         </p>
 
-        <div className="mt-12 flex flex-wrap justify-center gap-4">
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
           <a href={`mailto:${siteConfig.email}`}>
             <Button>
-              <Mail size={18} />
+              <Mail size={17} />
               Email me
             </Button>
           </a>
@@ -39,7 +37,7 @@ function ContactCTA() {
             rel="noreferrer"
           >
             <Button variant="secondary">
-              <FaLinkedinIn size={18} />
+              <FaLinkedinIn size={17} />
               LinkedIn
             </Button>
           </a>
@@ -50,20 +48,22 @@ function ContactCTA() {
             rel="noreferrer"
           >
             <Button variant="secondary">
-              <FaGithub size={18} />
+              <FaGithub size={17} />
               GitHub
             </Button>
           </a>
 
           <a href={siteConfig.resumePath} target="_blank" rel="noreferrer">
             <Button variant="secondary">
-              <Download size={18} />
+              <Download size={17} />
               Résumé
             </Button>
           </a>
         </div>
 
-        <p className="mt-16 text-sm text-neutral-500">
+        <div className="mx-auto mt-9 h-px max-w-2xl bg-white/10" />
+
+        <p className="mt-5 text-xs text-neutral-500">
           Designed and developed by {siteConfig.name} using React, TypeScript
           and Tailwind CSS.
         </p>
