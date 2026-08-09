@@ -1,6 +1,15 @@
-import { ChevronLeft, ChevronRight, Search, Users, X } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Play,
+  Search,
+  Users,
+  X,
+} from "lucide-react";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
+
+import MediaAsset from "../common/MediaAsset";
 
 import {
   galleryImages,
@@ -123,6 +132,10 @@ function GalleryGrid() {
     };
   }, [activeImageIndex, closeLightbox, showNext, showPrevious]);
 
+  useEffect(() => {
+    setActiveImageIndex(null);
+  }, [activeCategory, activePerson, searchQuery]);
+
   const activeImage: GalleryImage | undefined =
     activeImageIndex !== null ? filteredImages[activeImageIndex] : undefined;
 
@@ -216,70 +229,82 @@ function GalleryGrid() {
 
           <p className="text-sm text-[var(--color-text-muted)]">
             {filteredImages.length}{" "}
-            {filteredImages.length === 1 ? "photo" : "photos"}
+            {filteredImages.length === 1 ? "item" : "items"}
           </p>
         </div>
 
         <div className="columns-1 gap-4 sm:columns-2 lg:columns-3 xl:columns-4">
-          {filteredImages.map((image, index) => (
-            <button
-              key={image.id}
-              type="button"
-              onClick={() => setActiveImageIndex(index)}
-              className="group relative mb-4 block w-full break-inside-avoid overflow-hidden rounded-[var(--radius-medium)] border border-[var(--color-border)] bg-white text-left shadow-[var(--shadow-small)] transition hover:-translate-y-1 hover:shadow-[var(--shadow-medium)]"
-            >
-              <img
-                src={image.src}
-                alt={image.alt}
-                loading="lazy"
-                className="h-auto w-full object-cover transition duration-500 group-hover:scale-[1.03]"
-                onError={(event) => {
-                  event.currentTarget.style.display = "none";
-                }}
-              />
+          {filteredImages.map((image, index) => {
+            const isVideo = image.type === "video";
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/5 to-transparent opacity-70 transition group-hover:opacity-100" />
+            return (
+              <button
+                key={image.id}
+                type="button"
+                onClick={() => setActiveImageIndex(index)}
+                className="group relative mb-4 block w-full break-inside-avoid overflow-hidden rounded-[var(--radius-medium)] border border-[var(--color-border)] bg-white text-left shadow-[var(--shadow-small)] transition hover:-translate-y-1 hover:shadow-[var(--shadow-medium)]"
+              >
+                <div className="relative overflow-hidden">
+                  <MediaAsset
+                    type={image.type ?? "image"}
+                    src={image.src}
+                    alt={image.alt}
+                    poster={image.poster}
+                    preview
+                    className="h-auto min-h-[180px] w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                  />
 
-              <div className="absolute inset-x-0 bottom-0 p-5 text-white">
-                <div className="flex flex-wrap gap-2">
-                  {image.featured && (
-                    <span className="rounded-full bg-white/15 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] backdrop-blur-md">
-                      Highlight
-                    </span>
+                  {isVideo && (
+                    <div className="absolute left-4 top-4 flex items-center gap-2 rounded-full bg-black/45 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-md">
+                      <Play size={12} fill="currentColor" />
+                      Video
+                    </div>
                   )}
 
-                  {image.year && (
-                    <span className="rounded-full bg-white/15 px-2.5 py-1 text-[10px] font-semibold backdrop-blur-md">
-                      {image.year}
-                    </span>
-                  )}
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/5 to-transparent opacity-70 transition group-hover:opacity-100" />
+
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 p-5 text-white">
+                    <div className="flex flex-wrap gap-2">
+                      {image.featured && (
+                        <span className="rounded-full bg-white/15 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] backdrop-blur-md">
+                          Highlight
+                        </span>
+                      )}
+
+                      {image.year && (
+                        <span className="rounded-full bg-white/15 px-2.5 py-1 text-[10px] font-semibold backdrop-blur-md">
+                          {image.year}
+                        </span>
+                      )}
+                    </div>
+
+                    {image.title && (
+                      <h2 className="mt-3 text-xl font-bold tracking-[-0.03em]">
+                        {image.title}
+                      </h2>
+                    )}
+
+                    {image.caption && (
+                      <p className="mt-2 line-clamp-2 text-sm leading-6 text-white/70">
+                        {image.caption}
+                      </p>
+                    )}
+
+                    {image.people && image.people.length > 0 && (
+                      <p className="mt-3 text-xs font-medium text-white/55">
+                        {image.people.join(" · ")}
+                      </p>
+                    )}
+                  </div>
                 </div>
-
-                {image.title && (
-                  <h2 className="mt-3 text-xl font-bold tracking-[-0.03em]">
-                    {image.title}
-                  </h2>
-                )}
-
-                {image.caption && (
-                  <p className="mt-2 line-clamp-2 text-sm leading-6 text-white/70">
-                    {image.caption}
-                  </p>
-                )}
-
-                {image.people && image.people.length > 0 && (
-                  <p className="mt-3 text-xs font-medium text-white/55">
-                    {image.people.join(" · ")}
-                  </p>
-                )}
-              </div>
-            </button>
-          ))}
+              </button>
+            );
+          })}
         </div>
 
         {filteredImages.length === 0 && (
           <div className="rounded-[var(--radius-large)] border border-dashed border-[var(--color-border)] bg-white p-12 text-center">
-            <p className="text-lg font-semibold">No photos match this view.</p>
+            <p className="text-lg font-semibold">No media matches this view.</p>
 
             <p className="mt-2 text-[var(--color-text-muted)]">
               Try another person, category or search term.
@@ -319,7 +344,7 @@ function GalleryGrid() {
                   event.stopPropagation();
                   showPrevious();
                 }}
-                aria-label="Previous image"
+                aria-label="Previous media"
                 className="absolute left-4 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 sm:left-8"
               >
                 <ChevronLeft size={25} />
@@ -331,7 +356,7 @@ function GalleryGrid() {
                   event.stopPropagation();
                   showNext();
                 }}
-                aria-label="Next image"
+                aria-label="Next media"
                 className="absolute right-4 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 sm:right-8"
               >
                 <ChevronRight size={25} />
@@ -344,9 +369,14 @@ function GalleryGrid() {
             onClick={(event) => event.stopPropagation()}
             role="presentation"
           >
-            <img
+            <MediaAsset
+              key={activeImage.id}
+              type={activeImage.type ?? "image"}
               src={activeImage.src}
               alt={activeImage.alt}
+              poster={activeImage.poster}
+              controls={activeImage.type === "video"}
+              loading="eager"
               className="max-h-[76vh] max-w-full rounded-2xl object-contain"
             />
 
