@@ -25,18 +25,27 @@ function JourneyTimeline() {
                 >
                   <div className="overflow-hidden rounded-[var(--radius-large)] border border-[var(--color-border)] bg-white shadow-[var(--shadow-small)] transition duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-medium)]">
                     {item.image && (
-                      <div className="relative aspect-[16/8.5] overflow-hidden bg-[var(--color-background)]">
+                      <div
+                        className="relative w-full overflow-hidden bg-[var(--color-background)]"
+                        style={{
+                          aspectRatio: item.imageAspect ?? "16 / 8.5",
+                        }}
+                      >
                         <img
                           src={item.image}
                           alt={item.title}
                           loading="lazy"
-                          className="h-full w-full object-cover transition duration-500 hover:scale-[1.03]"
+                          className="absolute inset-0 h-full w-full object-cover transition duration-500 hover:scale-[1.03]"
+                          style={{
+                            objectPosition:
+                              item.imagePosition ?? "center center",
+                          }}
                           onError={(event) => {
                             event.currentTarget.style.display = "none";
                           }}
                         />
 
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
+                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
                       </div>
                     )}
 

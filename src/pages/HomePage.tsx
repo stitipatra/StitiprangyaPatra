@@ -66,17 +66,11 @@ function HomePage() {
 
         <div className="relative mx-auto w-full max-w-[500px] lg:mx-0 lg:justify-self-end">
           <div className="aspect-[4/4.6] overflow-hidden rounded-[var(--radius-large)] border border-[var(--color-border)] bg-white shadow-[var(--shadow-medium)]">
-            <div className="flex h-full items-center justify-center bg-gradient-to-br from-blue-100 via-white to-orange-100 text-center">
-              <div className="px-8">
-                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
-                  Portrait placeholder
-                </p>
-
-                <p className="mt-3 text-base font-semibold">
-                  Your main photograph will go here
-                </p>
-              </div>
-            </div>
+            <img
+              src="/images/media/IMG-20231111-WA0000_result_result.webp"
+              alt="Stitiprangya Patra"
+              className="h-full w-full object-cover object-center"
+            />
           </div>
 
           <div className="absolute -bottom-4 left-4 rounded-2xl border border-[var(--color-border)] bg-white px-4 py-3 shadow-[var(--shadow-small)] sm:-left-5">

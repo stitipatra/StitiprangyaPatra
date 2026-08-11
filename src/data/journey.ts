@@ -10,7 +10,8 @@ export interface JourneyItem {
     | "Internship"
     | "Work"
     | "Achievement"
-    | "Community";
+    | "Community"
+    | "Sport";
 
   description: string;
 
@@ -18,6 +19,8 @@ export interface JourneyItem {
   tags?: string[];
 
   image?: string;
+  imagePosition?: string;
+  imageAspect?: string;
   link?: string;
 }
 
@@ -40,7 +43,8 @@ export const journeyItems: JourneyItem[] = [
 
     tags: ["Running", "Fundraising", "Social Impact"],
 
-    image: "/images/journey/tamana-2016.webp",
+    // Replace with actual filename later.
+    image: "/images/media/airtel.jpg",
 
     link: "https://www.icfn.in/static/v2/2019/11/14/2016.pdf",
   },
@@ -57,12 +61,14 @@ export const journeyItems: JourneyItem[] = [
 
     highlights: [
       "CBSE Class X — 95.4%",
-      "Active participation in athletics and football.",
+      "Competed in athletics and football alongside academics.",
     ],
 
-    tags: ["School", "Academics", "Sports"],
+    tags: ["School", "Academics", "Athletics", "Football"],
 
-    image: "/images/journey/school.webp",
+    image: "/images/media/IMG-20251222-WA0002_result.webp",
+    imagePosition: "center 25%",
+    imageAspect: "4 / 3",
   },
 
   {
@@ -82,7 +88,30 @@ export const journeyItems: JourneyItem[] = [
 
     tags: ["School", "Academics"],
 
-    image: "/images/journey/class-12.webp",
+    image: "/images/media/IMG_20251221_140924_893_result.webp",
+    imagePosition: "center 51%",
+    imageAspect: "4 / 3",
+  },
+
+  {
+    id: "bits-entry",
+    year: "2020",
+    title: "The BITS Chapter Begins",
+    subtitle: "BITS Pilani, Goa Campus",
+    type: "University",
+
+    description:
+      "Moved from school into a five-year dual-degree programme that would reshape both my technical interests and life outside academics.",
+
+    highlights: [
+      "Entered BITS Pilani through BITSAT.",
+      "Chose a dual-degree path combining Mathematics with engineering.",
+      "Began exploring the intersection of mathematics, technology and software.",
+    ],
+
+    tags: ["BITS Pilani", "BITSAT", "Mathematics", "Engineering"],
+
+    image: "/images/media/20210919_145755_result_result.webp",
   },
 
   {
@@ -98,14 +127,33 @@ export const journeyItems: JourneyItem[] = [
 
     highlights: [
       "Dual-degree programme in Electronics & Communication Engineering and Mathematics.",
-      "Worked across software engineering, signal processing, machine learning, mathematical modelling and game theory projects.",
-      "Represented BITS through football and participated in inter-college competitions.",
+      "Worked across software engineering, signal processing, machine learning, mathematical modelling and game theory.",
+      "Explored computing through coursework, projects, internships and independent building.",
       "Built friendships, technical foundations and experiences that strongly shaped my direction after college.",
     ],
 
-    tags: ["BITS Pilani", "ECE", "Mathematics", "Software", "Football"],
+    tags: ["BITS Pilani", "ECE", "Mathematics", "Software", "College"],
+  },
 
-    image: "/images/journey/bits.webp",
+  {
+    id: "bits-football",
+    year: "College Years",
+    title: "Football at BITS",
+    subtitle: "Competitive sport alongside engineering",
+    type: "Sport",
+
+    description:
+      "Football remained an important part of college life, providing a completely different arena for competition, teamwork and consistency alongside academics.",
+
+    highlights: [
+      "Represented BITS through competitive football.",
+      "Competed with the college team in inter-college tournaments.",
+      "Continued balancing sport, academics, internships and engineering projects.",
+    ],
+
+    tags: ["Football", "BITS Pilani", "Sport", "Teamwork"],
+
+    image: "/images/media/IMG-20231121-WA0015_result.webp",
   },
 
   {
@@ -125,6 +173,9 @@ export const journeyItems: JourneyItem[] = [
     ],
 
     tags: ["Web", "Android", "JavaScript", "Java"],
+
+    // Add an image only if you have a meaningful one.
+    // image: "/images/media/REPLACE-SWECHA.webp",
   },
 
   {
@@ -144,6 +195,8 @@ export const journeyItems: JourneyItem[] = [
     ],
 
     tags: ["Machine Learning", "Python", "Fraud Detection"],
+
+    // image: "/images/media/REPLACE-PERCEPTIVITI.webp",
   },
 
   {
@@ -163,6 +216,8 @@ export const journeyItems: JourneyItem[] = [
     ],
 
     tags: ["Backend", "REST APIs", "PostgreSQL"],
+
+    // image: "/images/media/REPLACE-BI.webp",
   },
 
   {
@@ -182,6 +237,8 @@ export const journeyItems: JourneyItem[] = [
     ],
 
     tags: ["Computer Vision", "AI", "YOLOv8", "Bedrock"],
+
+    // image: "/images/media/REPLACE-TIF.webp",
   },
 
   {
@@ -195,12 +252,14 @@ export const journeyItems: JourneyItem[] = [
       "Built production backend systems where architecture, testing, financial correctness and API performance mattered every day.",
 
     highlights: [
-      "Java 21 and Spring Boot 3.3.",
-      "Hexagonal architecture and test-driven development.",
+      "Worked with Java 21 and Spring Boot 3.3.",
+      "Applied hexagonal architecture and test-driven development.",
       "Built financial APIs and a penal-charge engine.",
     ],
 
     tags: ["Java", "Spring Boot", "Backend", "FinTech"],
+
+    // image: "/images/media/REPLACE-RAHI.webp",
   },
 
   {
@@ -219,9 +278,9 @@ export const journeyItems: JourneyItem[] = [
       "Closed one chapter and moved into full-time engineering.",
     ],
 
-    tags: ["Graduation", "BITS Pilani"],
+    tags: ["Graduation", "BITS Pilani", "Mathematics", "ECE"],
 
-    image: "/images/journey/graduation.webp",
+    image: "/images/media/IMG-20250727-WA0024_result.webp",
   },
 
   {
@@ -246,15 +305,41 @@ export const journeyItems: JourneyItem[] = [
   {
     id: "gre",
     year: "2026",
-    title: "GRE",
-    subtitle: "Graduate study preparation",
+    title: "Preparing for the Next Academic Chapter",
+    subtitle: "GRE · Graduate study preparation",
     type: "Achievement",
 
     description:
-      "Prepared for and completed the GRE as part of my graduate-school journey.",
+      "Began preparing for graduate study while continuing to deepen my software engineering and systems foundations.",
 
-    highlights: ["GRE score — 320"],
+    highlights: [
+      "Completed the GRE with a score of 320.",
+      "Started preparing for the next stage of graduate study.",
+    ],
 
     tags: ["GRE", "Graduate Studies"],
+
+    // No image needed.
+  },
+
+  {
+    id: "next-chapter",
+    year: "Next",
+    title: "The Next Chapter",
+    subtitle: "Still being written",
+    type: "Achievement",
+
+    description:
+      "Continuing to build stronger foundations in software engineering, distributed systems and product development while preparing for graduate study.",
+
+    highlights: [
+      "Deepening software engineering and system-design fundamentals.",
+      "Building products and projects around real technical problems.",
+      "Preparing for graduate study and the opportunities that follow.",
+    ],
+
+    tags: ["Software Engineering", "Systems", "Graduate Studies"],
+
+    // Intentionally no image.
   },
 ];
