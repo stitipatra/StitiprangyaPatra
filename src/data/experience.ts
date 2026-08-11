@@ -41,7 +41,7 @@ export const experiences: ExperienceItem[] = [
     featured: true,
 
     website: "https://www.nielsen.com/about-us/locations/india/",
-    logo: "/images/companies/nielsen.png",
+    logo: "/images/media/Nielsen_New_Logo_2021.png",
 
     summary:
       "Building reliable backend systems and distributed data workflows for large-scale media-processing platforms. My work focuses on production orchestration, deterministic reprocessing, validation, cloud efficiency and dependable delivery across recurring data pipelines.",
@@ -118,7 +118,7 @@ export const experiences: ExperienceItem[] = [
     type: "Internship",
 
     website: "https://www.rahitechnologies.com/",
-    logo: "/images/companies/rahi.png",
+    logo: "/images/media/rahi_platform_technologies_logo.jfif",
 
     summary:
       "Built production backend services for a lending platform using Java 21 and Spring Boot, with a strong focus on clean architecture, financial correctness, automated testing and API performance.",
@@ -184,7 +184,7 @@ export const experiences: ExperienceItem[] = [
     type: "Internship",
 
     website: "https://tiflabs.in/",
-    logo: "/images/companies/tif-labs.png",
+    logo: "/images/media/tif.jfif",
 
     summary:
       "Worked on computer-vision and applied generative-AI systems for vehicle-damage inspection, segmentation, severity assessment and automated customer communication.",
@@ -250,7 +250,7 @@ export const experiences: ExperienceItem[] = [
     type: "Internship",
 
     website: "http://bipros.com",
-    logo: "/images/companies/bi-professionals.png",
+    logo: "/images/media/bi_prof.png",
 
     summary:
       "Contributed to BIColab, an internal collaboration platform, by developing backend APIs, authentication workflows and PostgreSQL-backed services.",
@@ -301,7 +301,7 @@ export const experiences: ExperienceItem[] = [
     type: "Internship",
 
     website: "https://www.perceptiviti.com/",
-    logo: "/images/companies/perceptiviti.png",
+    logo: "/images/media/perceptiviti.png",
 
     summary:
       "Worked on Sherlock, an insurance-claims intelligence platform focused on automating adjudication and identifying fraud, waste and abuse.",
@@ -361,7 +361,7 @@ export const experiences: ExperienceItem[] = [
     type: "Internship",
 
     website: "https://swecha.org/home",
-    logo: "/images/companies/swecha.png",
+    logo: "/images/media/Swechalogo.png",
 
     summary:
       "Built early web and mobile applications centred on speech accessibility, audio playback and cross-platform software development.",
