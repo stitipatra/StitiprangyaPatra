@@ -60,29 +60,31 @@ export const lifeSections: LifeSection[] = [
 
     images: {
       hero: {
-        src: "/images/life/football/hero.webp",
+        src: "/images/media/Football1.webp",
         alt: "Playing competitive football",
         caption: "Football has been part of my life for years.",
       },
 
       gallery: [
         {
-          src: "/images/life/football/state-tournament.webp",
+          src: "/images/media/IMG-20231125-WA0013_result.webp",
           alt: "State-level football tournament",
           caption: "State-level football.",
         },
         {
-          src: "/images/life/football/bits-team.webp",
+          src: "/images/media/IMG-20240429-WA0110_result.webp",
           alt: "BITS Pilani Goa football team",
           caption: "BITS Football Club.",
         },
         {
-          src: "/images/life/football/match.webp",
+          src: "/images/media/Football @ InterBITS_24 [DoPy] (226)_result.webp",
           alt: "Football match",
+          caption: "Competitive football match.",
         },
         {
-          src: "/images/life/football/team.webp",
+          src: "/images/media/FB_IMG_1702994157315_result.webp",
           alt: "Football team photograph",
+          caption: "Football team photograph.",
         },
       ],
     },
@@ -109,29 +111,26 @@ export const lifeSections: LifeSection[] = [
 
     images: {
       hero: {
-        src: "/images/life/running/hero.webp",
+        src: "/images/media/DSC_9499_result.webp",
         alt: "Running a road race",
         caption: "10K PB — 38:30.",
       },
 
       gallery: [
         {
-          src: "/images/life/running/race.webp",
+          src: "/images/media/IMG_20210814_123236904_result.webp",
           alt: "Running during a race",
           caption: "Race day.",
         },
         {
-          src: "/images/life/running/tamana.webp",
+          src: "/images/media/DELH3476.jpeg",
           alt: "Airtel Delhi Half Marathon 10K",
           caption: "Running for Tamana.",
         },
         {
-          src: "/images/life/running/finish.webp",
+          src: "/images/media/IMG_20210814_123334902_result_result.webp",
           alt: "Finishing a road race",
-        },
-        {
-          src: "/images/life/running/training.webp",
-          alt: "Running training session",
+          caption: "Crossing the finish line.",
         },
       ],
     },
@@ -144,86 +143,6 @@ export const lifeSections: LifeSection[] = [
       {
         label: "Tamana fundraiser recognition",
         url: "https://www.icfn.in/static/v2/2019/11/14/2016.pdf",
-      },
-    ],
-  },
-
-  {
-    id: "training",
-
-    title: "Training & Fitness",
-    subtitle: "Strength without losing endurance",
-
-    icon: "🏋️",
-
-    description:
-      "Strength training complements both football and running for me. I enjoy the slow, measurable process of becoming stronger while keeping enough endurance and mobility to continue playing sport and running well.",
-
-    highlights: [
-      "Regular strength training.",
-      "Football and endurance remain part of the same routine.",
-      "Focus on consistency rather than short bursts of motivation.",
-      "Training is one of the simplest ways I keep structure outside work.",
-    ],
-
-    images: {
-      hero: {
-        src: "/images/life/training/hero.webp",
-        alt: "Strength training",
-      },
-
-      gallery: [
-        {
-          src: "/images/life/training/gym-1.webp",
-          alt: "Gym training session",
-        },
-        {
-          src: "/images/life/training/gym-2.webp",
-          alt: "Strength workout",
-        },
-      ],
-    },
-  },
-
-  {
-    id: "chess",
-
-    title: "Chess",
-    subtitle: "Patterns, patience and calculation",
-
-    icon: "♟️",
-
-    description:
-      "Chess scratches a very different competitive itch from sport. I enjoy the combination of pattern recognition, calculation, preparation and the fact that one careless decision can completely change a position.",
-
-    highlights: [
-      "Chess.com rating around 1600.",
-      "Primarily play Rapid and Blitz.",
-      "Enjoy tactical positions, calculation and pattern recognition.",
-    ],
-
-    images: {
-      hero: {
-        src: "/images/life/chess/hero.webp",
-        alt: "Chess board",
-      },
-
-      gallery: [
-        {
-          src: "/images/life/chess/chess-1.webp",
-          alt: "Playing chess",
-        },
-        {
-          src: "/images/life/chess/chess-2.webp",
-          alt: "Chess position",
-        },
-      ],
-    },
-
-    links: [
-      {
-        label: "Chess.com profile",
-        url: "https://www.chess.com/member/stitipatra",
       },
     ],
   },
@@ -250,39 +169,41 @@ export const lifeSections: LifeSection[] = [
 
     images: {
       hero: {
-        src: "/images/life/travel/hero.webp",
+        src: "/images/media/IMG-20240108-WA0087~2_result_result.webp",
         alt: "Adventure travel",
         caption: "Exploring through experiences.",
       },
 
       gallery: [
         {
-          src: "/images/life/travel/paragliding.webp",
+          src: "/images/media/Screenshot_20260810_130251_Photos~2_result.webp",
           alt: "Paragliding",
           caption: "Paragliding.",
         },
         {
-          src: "/images/life/travel/kayaking.webp",
+          src: "/images/media/20250728_141729_result.webp",
           alt: "Kayaking",
           caption: "Kayaking.",
         },
         {
-          src: "/images/life/travel/rafting.webp",
+          src: "/images/media/IMG-20161112-WA0109_result_result.webp",
           alt: "River rafting",
           caption: "River rafting.",
         },
         {
-          src: "/images/life/travel/parasailing.webp",
+          src: "/images/media/20260612_122409_result.webp",
           alt: "Parasailing",
           caption: "Parasailing.",
         },
         {
-          src: "/images/life/travel/trip-1.webp",
+          src: "/images/media/20230104_161410_result.webp",
           alt: "Travel in India",
+          caption: "Exploring India.",
         },
         {
-          src: "/images/life/travel/trip-2.webp",
+          src: "/images/media/trip-2.webp",
           alt: "Travel memory",
+          caption: "Creating memories.",
         },
       ],
     },
@@ -294,7 +215,7 @@ export const lifeSections: LifeSection[] = [
     title: "People",
     subtitle: "The best parts of most memories",
 
-    icon: "🫶",
+    icon: "👤👤👤",
 
     description:
       "A lot of the moments I value most are tied to the people I experienced them with. Friends, family, teammates and the people I met through college, work and travel are a large part of the story behind this website.",
@@ -310,37 +231,88 @@ export const lifeSections: LifeSection[] = [
 
     images: {
       hero: {
-        src: "/images/life/people/hero.webp",
+        src: "/images/media/20230104_113102(0)_result.webp",
         alt: "Friends and family",
+        caption: "Family",
       },
 
       gallery: [
         {
-          src: "/images/life/people/family.webp",
-          alt: "Family",
-          caption: "Family.",
-        },
-        {
-          src: "/images/life/people/sister.webp",
+          src: "/images/media/20250315_212626_result.webp",
           alt: "With my sister",
-          caption: "Sister.",
+          caption: "Sister",
         },
         {
-          src: "/images/life/people/best-friends.webp",
+          src: "/images/media/20250611_213519_result.webp",
+          alt: "With my sister",
+          caption: "Sister",
+        },
+        {
+          src: "/images/media/pic1_result.webp",
           alt: "Best friends",
-          caption: "Best friends.",
+          caption: "Home",
         },
         {
-          src: "/images/life/people/college-friends.webp",
-          alt: "College friends",
-          caption: "BITS memories.",
+          src: "/images/media/20260410_210644_result.webp",
+          alt: "Family",
+          caption: "Bhuses missing",
         },
         {
-          src: "/images/life/people/football-friends.webp",
+          src: "/images/media/IMG-20240106-WA0032_result_result.webp",
+          alt: "School friends",
+          caption: "DPS memories.",
+        },
+        {
+          src: "/images/media/IMG-20220417-WA0003_result_result.webp",
           alt: "Football teammates",
+          caption: "Football teammates.",
         },
       ],
     },
+  },
+
+  {
+    id: "training",
+
+    title: "Training & Fitness",
+    subtitle: "Strength without losing endurance",
+
+    icon: "🏋️",
+
+    description:
+      "Strength training complements both football and running for me. I enjoy the slow, measurable process of becoming stronger while keeping enough endurance and mobility to continue playing sport and running well.",
+
+    highlights: [
+      "Regular strength training.",
+      "Football and endurance remain part of the same routine.",
+      "Focus on consistency rather than short bursts of motivation.",
+      "Training is one of the simplest ways I keep structure outside work.",
+    ],
+  },
+
+  {
+    id: "chess",
+
+    title: "Chess",
+    subtitle: "Patterns, patience and calculation",
+
+    icon: "♟️",
+
+    description:
+      "Chess scratches a very different competitive itch from sport. I enjoy the combination of pattern recognition, calculation, preparation and the fact that one careless decision can completely change a position.",
+
+    highlights: [
+      "Chess.com rating around 1600.",
+      "Primarily play Rapid and Blitz.",
+      "Enjoy tactical positions, calculation and pattern recognition.",
+    ],
+
+    links: [
+      {
+        label: "Chess.com profile",
+        url: "https://www.chess.com/member/stitipatra",
+      },
+    ],
   },
 
   {
@@ -384,14 +356,6 @@ export const lifeSections: LifeSection[] = [
       "Represented Tamana at the Airtel Delhi Half Marathon 10K.",
       "An early reminder that personal challenges can also contribute to something larger.",
     ],
-
-    images: {
-      hero: {
-        src: "/images/life/community/tamana.webp",
-        alt: "Tamana fundraiser and Airtel Delhi Half Marathon",
-        caption: "₹52,500 raised for Tamana.",
-      },
-    },
 
     links: [
       {
