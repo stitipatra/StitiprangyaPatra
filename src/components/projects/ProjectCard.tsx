@@ -12,11 +12,26 @@ interface ProjectCardProps {
 function ProjectCard({ project }: ProjectCardProps) {
   return (
     <article className="group overflow-hidden rounded-[var(--radius-large)] border border-[var(--color-border)] bg-white shadow-[var(--shadow-small)] transition duration-300 hover:-translate-y-2 hover:shadow-[var(--shadow-medium)]">
-      <div className="relative flex aspect-[16/10] items-end overflow-hidden bg-gradient-to-br from-slate-950 via-slate-800 to-blue-600 p-7 text-white">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.24),transparent_35%)]" />
+      {/* PROJECT COVER */}
+      <div className="relative flex aspect-[16/10] items-end overflow-hidden bg-gradient-to-br from-slate-950 via-slate-800 to-blue-600 text-white">
+        {project.coverImage && (
+          <img
+            src={project.coverImage}
+            alt={`${project.title} cover`}
+            loading="lazy"
+            className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+            onError={(event) => {
+              event.currentTarget.style.display = "none";
+            }}
+          />
+        )}
 
-        <div className="relative z-10">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/60">
+        {/* Makes text readable over any image */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/5" />
+
+        {/* Project information */}
+        <div className="relative z-10 p-7">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
             {project.category}
           </p>
 
@@ -24,15 +39,17 @@ function ProjectCard({ project }: ProjectCardProps) {
             {project.title}
           </h2>
 
-          <p className="mt-2 text-lg text-white/75">{project.subtitle}</p>
+          <p className="mt-2 text-lg text-white/80">{project.subtitle}</p>
         </div>
       </div>
 
+      {/* PROJECT CONTENT */}
       <div className="p-7 sm:p-8">
         <p className="text-lg leading-8 text-[var(--color-text-muted)]">
           {project.summary}
         </p>
 
+        {/* TECHNOLOGIES */}
         <div className="mt-6 flex flex-wrap gap-2">
           {project.technologies.slice(0, 6).map((technology) => (
             <span
@@ -44,6 +61,7 @@ function ProjectCard({ project }: ProjectCardProps) {
           ))}
         </div>
 
+        {/* ACTIONS */}
         <div className="mt-8 flex flex-wrap gap-3">
           <Link to={`/projects/${project.id}`}>
             <Button>

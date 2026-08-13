@@ -39,6 +39,7 @@ export interface ProjectItem {
   github?: string;
   demo?: string;
   video?: string;
+  deployment?: string;
 
   coverImage?: string;
   screenshots?: string[];
@@ -441,6 +442,74 @@ export const projects: ProjectItem[] = [
     video: "",
 
     coverImage: "/images/projects/social-media-analysis/cover.webp",
+    screenshots: [],
+  },
+  {
+    id: "road-that-gave-me-a-sister",
+    title: "The Road That Gave Me a Sister",
+    subtitle: "An interactive map-based story built as a personal gift",
+
+    category: "Product",
+
+    tags: [
+      "Interactive Storytelling",
+      "Maps",
+      "Leaflet",
+      "Animation",
+      "Personal Project",
+      "Creative Coding",
+    ],
+
+    period: "2026",
+    status: "Completed",
+
+    role: "Designer / Developer",
+    teamSize: "Personal Project",
+    duration: "Personal Build",
+
+    summary:
+      "An interactive map-based story built as a personal gift, recreating a meaningful journey through locations, animated routes and memories.",
+
+    problem:
+      "I wanted to create something more personal than a conventional gift — something that could turn a shared journey and its memories into an experience that could be explored and replayed.",
+
+    solution:
+      "Built an interactive storytelling experience around a map, using route animation, location markers and a moving car to reconstruct the journey between meaningful places.",
+
+    technologies: [
+      "JavaScript",
+      "Leaflet",
+      "HTML",
+      "CSS",
+      "Map-based Visualization",
+      "Animation",
+    ],
+
+    highlights: [
+      "Recreated a meaningful real-world journey as an interactive map.",
+      "Animated a car along the route between locations.",
+      "Combined maps, movement and personal storytelling into a single experience.",
+      "Designed and built specifically as a personal gift rather than a conventional software project.",
+    ],
+
+    challenges: [
+      "Making the route animation feel natural rather than purely functional.",
+      "Synchronizing movement and map interactions with the storytelling.",
+      "Keeping the experience simple while still making it emotionally meaningful.",
+    ],
+
+    lessons: [
+      "Software can be a medium for storytelling as much as problem-solving.",
+      "Small interaction details can completely change how personal a digital experience feels.",
+      "Building for one specific person creates very different product-design constraints from building for a general audience.",
+    ],
+
+    github: "https://github.com/stitipatra/TheRoadThatGaveMeASister",
+    demo: "https://theroadthatgavemeasister-rupalidi.stitipatra.workers.dev/",
+    video: "",
+
+    coverImage: "/images/media/TheRoad.jpg",
+
     screenshots: [],
   },
 ];
