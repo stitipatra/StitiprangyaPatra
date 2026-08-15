@@ -29,7 +29,7 @@ function ProjectNavigation({ currentProjectId }: ProjectNavigationProps) {
             {previousProject ? (
               <Link
                 to={`/projects/${previousProject.id}`}
-                className="group flex h-full items-center gap-4 rounded-[var(--radius-medium)] border border-[var(--color-border)] bg-white p-5 transition hover:-translate-y-1 hover:shadow-[var(--shadow-small)]"
+                className="group flex h-full items-center gap-4 rounded-[var(--radius-medium)] border border-[var(--color-border)] bg-white p-5 text-[var(--color-text)] transition hover:-translate-y-1 hover:shadow-[var(--shadow-small)]"
               >
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--color-background)] transition group-hover:bg-[var(--color-surface-dark)] group-hover:text-white">
                   <ArrowLeft size={18} />
@@ -52,17 +52,19 @@ function ProjectNavigation({ currentProjectId }: ProjectNavigationProps) {
 
           <Link
             to="/projects"
-            className="flex items-center justify-center gap-2 rounded-[var(--radius-medium)] border border-[var(--color-border)] bg-white px-6 py-5 font-semibold transition hover:bg-[var(--color-surface-dark)] hover:text-white"
+            className="group flex items-center justify-center gap-2 rounded-[var(--radius-medium)] border border-[var(--color-border)] bg-white px-6 py-5 font-semibold text-[var(--color-text)] transition hover:border-[var(--color-surface-dark)] hover:bg-[var(--color-surface-dark)] hover:!text-white"
           >
-            <Grid2X2 size={18} />
-            All projects
+            <Grid2X2 size={18} className="transition group-hover:text-white" />
+            <span className="transition group-hover:text-white">
+              All projects
+            </span>
           </Link>
 
           <div>
             {nextProject ? (
               <Link
                 to={`/projects/${nextProject.id}`}
-                className="group flex h-full items-center justify-end gap-4 rounded-[var(--radius-medium)] border border-[var(--color-border)] bg-white p-5 text-right transition hover:-translate-y-1 hover:shadow-[var(--shadow-small)]"
+                className="group flex h-full items-center justify-end gap-4 rounded-[var(--radius-medium)] border border-[var(--color-border)] bg-white p-5 text-right text-[var(--color-text)] transition hover:-translate-y-1 hover:shadow-[var(--shadow-small)]"
               >
                 <span>
                   <span className="block text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-text-muted)]">

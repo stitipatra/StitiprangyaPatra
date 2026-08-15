@@ -1,4 +1,4 @@
-import { ExternalLink, PlayCircle } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 
 import type { ProjectItem } from "../../data/projects";
 import Button from "../common/Button";
@@ -31,28 +31,33 @@ function ProjectDemo({ project }: ProjectDemoProps) {
           workflow and features.
         </p>
 
-        <div className="mt-8 flex flex-wrap gap-3">
-          {hasDemo && (
+        {hasVideo && (
+          <div className="mt-8 overflow-hidden rounded-[var(--radius-medium)] border border-white/10 bg-black shadow-[var(--shadow-medium)]">
+            <video
+              src={project.video}
+              controls
+              preload="metadata"
+              playsInline
+              className="aspect-video w-full bg-black object-contain"
+            >
+              Your browser does not support HTML video.
+            </video>
+          </div>
+        )}
+
+        {hasDemo && (
+          <div className="mt-8 flex flex-wrap gap-3">
             <a href={project.demo} target="_blank" rel="noreferrer">
-              <Button className="bg-white text-black hover:bg-white/90">
+              <Button
+                variant="secondary"
+                className="!border-white !bg-white !text-black hover:!bg-white/90 hover:!text-black"
+              >
                 <ExternalLink size={18} />
                 Open live demo
               </Button>
             </a>
-          )}
-
-          {hasVideo && (
-            <a href={project.video} target="_blank" rel="noreferrer">
-              <Button
-                variant="secondary"
-                className="border-white/20 bg-white/5 text-white hover:bg-white/10"
-              >
-                <PlayCircle size={18} />
-                Watch walkthrough
-              </Button>
-            </a>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </section>
   );

@@ -81,7 +81,7 @@ function ProjectCard({ project }: ProjectCardProps) {
 
           {project.demo && (
             <a href={project.demo} target="_blank" rel="noreferrer">
-              <Button variant="ghost">
+              <Button variant="secondary">
                 <ExternalLink size={18} />
                 Live Demo
               </Button>
