@@ -16,7 +16,9 @@ export interface AchievementItem {
   highlights?: string[];
 
   link?: string;
+  linkLabel?: string;
   image?: string;
+  imagePosition?: string;
 
   featured?: boolean;
 }
@@ -37,7 +39,7 @@ export const achievements: AchievementItem[] = [
       "Goa State Football League participation",
     ],
 
-    image: "/images/achievements/state-football.webp",
+    image: "/images/media/IMG-20231121-WA0015_result.webp",
     featured: true,
   },
 
@@ -51,8 +53,11 @@ export const achievements: AchievementItem[] = [
       "Competed in athletics at the district level and continued into long-distance running and road races.",
 
     highlights: ["District-level athletics", "10K personal best — 38:30"],
+    link: "https://strava.app.link/zvDes3yYk5b",
+    linkLabel: "View my Strava",
 
-    image: "/images/achievements/running.webp",
+    image: "/images/media/IMG-20220501-WA0054_result.webp",
+    imagePosition: "center 30%",
     featured: true,
   },
 
@@ -69,7 +74,9 @@ export const achievements: AchievementItem[] = [
     highlights: ["₹52,500 raised", "10K event", "Social-impact fundraising"],
 
     link: "https://www.icfn.in/static/v2/2019/11/14/2016.pdf",
-    image: "/images/achievements/tamana.webp",
+    linkLabel: "View fundraiser source",
+    image: "/images/media/DELH3476.jpeg",
+    imagePosition: "center 30%",
     featured: true,
   },
 
@@ -83,6 +90,8 @@ export const achievements: AchievementItem[] = [
     description: "Completed Class X with a score of 95.4%.",
 
     highlights: ["95.4%"],
+    image: "/images/media/IMG_6004_result.webp",
+    featured: true,
   },
 
   {
@@ -95,6 +104,9 @@ export const achievements: AchievementItem[] = [
     description: "Completed Class XII with a score of 95.2%.",
 
     highlights: ["95.2%"],
+    image: "/images/media/IMG-20240915-WA0029_result.webp",
+    imagePosition: "center 34%",
+    featured: true,
   },
 
   {
@@ -113,7 +125,8 @@ export const achievements: AchievementItem[] = [
       "M.Sc. (Hons.) Mathematics",
     ],
 
-    image: "/images/achievements/graduation.webp",
+    image: "/images/media/Screenshot_20250727_195407_YouTube_result.webp",
+    featured: true,
   },
 
   {
@@ -143,8 +156,6 @@ export const achievements: AchievementItem[] = [
       "Multilingual media translation",
       "Product storytelling under time constraints",
     ],
-
-    image: "/images/achievements/hackathon.webp",
   },
 
   {
@@ -162,7 +173,5 @@ export const achievements: AchievementItem[] = [
       "~30% AWS compute-cost reduction",
       "SLA improvement from ~85% to ~95%",
     ],
-
-    image: "/images/achievements/nielsen.webp",
   },
 ];

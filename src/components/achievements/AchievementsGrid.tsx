@@ -63,7 +63,12 @@ function AchievementsGrid() {
                 <img
                   src={achievement.image}
                   alt={achievement.title}
+                  loading="lazy"
                   className="h-full w-full object-cover transition duration-500 hover:scale-[1.03]"
+                  style={{
+                    objectPosition:
+                      achievement.imagePosition ?? "center center",
+                  }}
                   onError={(event) => {
                     event.currentTarget.style.display = "none";
                   }}
@@ -122,7 +127,7 @@ function AchievementsGrid() {
                 {achievement.description}
               </p>
 
-              {achievement.highlights && (
+              {achievement.highlights && achievement.highlights.length > 0 && (
                 <div className="mt-6 flex flex-wrap gap-2">
                   {achievement.highlights.map((highlight) => (
                     <span
@@ -144,13 +149,13 @@ function AchievementsGrid() {
                   href={achievement.link}
                   target="_blank"
                   rel="noreferrer"
-                  className={`mt-7 inline-flex items-center gap-2 text-sm font-semibold ${
+                  className={`mt-7 inline-flex items-center gap-2 text-sm font-semibold transition hover:opacity-70 ${
                     achievement.featured
                       ? "text-white"
                       : "text-[var(--color-primary)]"
                   }`}
                 >
-                  View recognition
+                  {achievement.linkLabel ?? "View recognition"}
                   <ExternalLink size={15} />
                 </a>
               )}
