@@ -1,12 +1,14 @@
 import {
   ArrowLeft,
   ExternalLink,
+  FileText,
   Lightbulb,
   Target,
   Wrench,
 } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import { Link, useParams } from "react-router";
+
 import ProjectVisuals from "../components/projects/ProjectVisuals";
 import Button from "../components/common/Button";
 import { projects } from "../data/projects";
@@ -89,6 +91,15 @@ function ProjectDetailPage() {
                   </Button>
                 </a>
               )}
+
+              {project.report && (
+                <a href={project.report} target="_blank" rel="noreferrer">
+                  <Button variant="secondary">
+                    <FileText size={18} />
+                    View project report
+                  </Button>
+                </a>
+              )}
             </div>
           </div>
 
@@ -98,6 +109,7 @@ function ProjectDetailPage() {
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
                   Status
                 </p>
+
                 <p className="mt-2 font-bold">{project.status}</p>
               </div>
 
@@ -105,6 +117,7 @@ function ProjectDetailPage() {
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
                   Role
                 </p>
+
                 <p className="mt-2 font-bold">
                   {project.role ?? "Project Contributor"}
                 </p>
@@ -115,6 +128,7 @@ function ProjectDetailPage() {
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
                     Team
                   </p>
+
                   <p className="mt-2 font-bold">{project.teamSize}</p>
                 </div>
               )}
@@ -124,6 +138,7 @@ function ProjectDetailPage() {
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
                     Duration
                   </p>
+
                   <p className="mt-2 font-bold">{project.duration}</p>
                 </div>
               )}
@@ -222,8 +237,11 @@ function ProjectDetailPage() {
           </div>
         </div>
       </section>
+
       <ProjectVisuals project={project} />
+
       <ProjectDemo project={project} />
+
       <section className="container grid gap-8 py-16 lg:grid-cols-2">
         <div>
           <h2 className="text-3xl font-bold tracking-[-0.04em]">Challenges</h2>
@@ -261,6 +279,7 @@ function ProjectDetailPage() {
           </div>
         </div>
       </section>
+
       <ProjectNavigation currentProjectId={project.id} />
     </>
   );

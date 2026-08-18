@@ -40,6 +40,7 @@ export interface ProjectItem {
   demo?: string;
   video?: string;
   deployment?: string;
+  report?: string;
 
   coverImage?: string;
   screenshots?: string[];
@@ -195,11 +196,16 @@ export const projects: ProjectItem[] = [
     ],
 
     github: "https://github.com/stitipatra/ArthaMitra",
-    demo: "",
-    video: "",
+    demo: "https://arthamitra.streamlit.app/",
+    video: "/videos/media/demo_vid.mp4",
 
-    coverImage: "/images/projects/arthamitra/cover.webp",
-    screenshots: [],
+    coverImage: "/images/media/Artha1.jpg",
+    screenshots: [
+      "/images/media/Artha1.jpg",
+      "/images/media/Artha2.jpg",
+      "/images/media/Artha3.jpg",
+      "/images/media/Artha4.jpg",
+    ],
   },
 
   {
@@ -337,12 +343,12 @@ export const projects: ProjectItem[] = [
       "Simulation is useful for exposing trade-offs before hardware implementation.",
     ],
 
-    github: "",
+    github: "https://github.com/stitipatra/Modulation_Project",
     demo: "",
     video: "",
 
-    coverImage: "/images/projects/digital-communication/cover.webp",
-    screenshots: [],
+    coverImage: "/images/media/Matlab1.jpg",
+    screenshots: ["/images/media/Matlab1.jpg", "/images/media/Matlab2.jpg"],
   },
   {
     id: "traffic-flow-optimization",
@@ -400,12 +406,13 @@ export const projects: ProjectItem[] = [
       "Sensitivity analysis helps identify which interventions matter most.",
     ],
 
-    github: "",
+    github: "https://github.com/stitipatra/Modulation_Project",
     demo: "",
     video: "",
+    report: "/documents/ppt1.pdf",
 
-    coverImage: "/images/projects/traffic-flow/cover.webp",
-    screenshots: [],
+    coverImage: "/images/media/modelling.jpg",
+    screenshots: ["/images/media/modelling.jpg"],
   },
 
   {
@@ -460,8 +467,9 @@ export const projects: ProjectItem[] = [
     github: "",
     demo: "",
     video: "",
+    report: "/documents/ProjectReport.pdf",
 
-    coverImage: "/images/projects/voting-theory/cover.webp",
+    coverImage: "/images/media/Voting.jpg",
     screenshots: [],
   },
 
@@ -520,11 +528,11 @@ export const projects: ProjectItem[] = [
       "Synthetic test data is useful when real datasets are unavailable.",
     ],
 
-    github: "",
+    github: "https://github.com/stitipatra/Oop_1/tree/main",
     demo: "",
     video: "",
 
-    coverImage: "/images/projects/social-media-analysis/cover.webp",
+    coverImage: "",
     screenshots: [],
   },
 ];
