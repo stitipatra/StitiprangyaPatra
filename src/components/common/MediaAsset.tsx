@@ -68,6 +68,7 @@ function MediaAsset({
       src={src}
       alt={alt}
       loading={loading}
+      decoding="async"
       className={className}
       onError={handleError}
     />
