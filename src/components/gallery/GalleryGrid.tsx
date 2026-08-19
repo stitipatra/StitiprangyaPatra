@@ -7,7 +7,7 @@ import {
   X,
 } from "lucide-react";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import MediaAsset from "../common/MediaAsset";
 
@@ -39,8 +39,6 @@ function GalleryGrid() {
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
 
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_BATCH);
-
-  const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
   const peopleOptions = useMemo(() => {
     const people = new Set<string>();
@@ -145,53 +143,10 @@ function GalleryGrid() {
     };
   }, [activeImageIndex, closeLightbox, showNext, showPrevious]);
 
-  /*
-   * Reset progressive rendering whenever
-   * filters/search change.
-   */
   useEffect(() => {
     setActiveImageIndex(null);
     setVisibleCount(ITEMS_PER_BATCH);
   }, [activeCategory, activePerson, searchQuery]);
-
-  /*
-   * Automatically load the next batch before
-   * the user actually reaches the bottom.
-   */
-  useEffect(() => {
-    const target = loadMoreRef.current;
-
-    if (!target || !hasMore) {
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-
-        if (!entry.isIntersecting) {
-          return;
-        }
-
-        setVisibleCount((current) =>
-          Math.min(current + ITEMS_PER_BATCH, filteredImages.length),
-        );
-      },
-      {
-        /*
-         * Start loading when the sentinel is
-         * within ~600px of the viewport.
-         */
-        rootMargin: "600px 0px",
-      },
-    );
-
-    observer.observe(target);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [hasMore, filteredImages.length, visibleCount]);
 
   const activeImage: GalleryImage | undefined =
     activeImageIndex !== null ? filteredImages[activeImageIndex] : undefined;
@@ -200,6 +155,12 @@ function GalleryGrid() {
     setActiveCategory("All");
     setActivePerson("Everyone");
     setSearchQuery("");
+  };
+
+  const loadMore = () => {
+    setVisibleCount((current) =>
+      Math.min(current + ITEMS_PER_BATCH, filteredImages.length),
+    );
   };
 
   return (
@@ -361,7 +322,20 @@ function GalleryGrid() {
         </div>
 
         {hasMore && (
-          <div ref={loadMoreRef} className="h-px w-full" aria-hidden="true" />
+          <div className="mt-10 flex flex-col items-center gap-3">
+            <button
+              type="button"
+              onClick={loadMore}
+              className="rounded-full border border-[var(--color-border)] bg-white px-6 py-3 text-sm font-semibold shadow-[var(--shadow-small)] transition hover:-translate-y-0.5 hover:border-[var(--color-text)] hover:shadow-[var(--shadow-medium)]"
+            >
+              Load more
+            </button>
+
+            <p className="text-xs text-[var(--color-text-muted)]">
+              Showing {Math.min(visibleCount, filteredImages.length)} of{" "}
+              {filteredImages.length}
+            </p>
+          </div>
         )}
 
         {filteredImages.length === 0 && (
