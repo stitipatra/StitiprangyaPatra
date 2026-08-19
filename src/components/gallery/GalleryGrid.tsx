@@ -7,7 +7,7 @@ import {
   X,
 } from "lucide-react";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import MediaAsset from "../common/MediaAsset";
 
@@ -27,6 +27,26 @@ const categoryOptions: Array<"All" | GalleryCategory> = [
 
 const ITEMS_PER_BATCH = 20;
 
+function getColumnCount() {
+  if (typeof window === "undefined") {
+    return 1;
+  }
+
+  if (window.innerWidth >= 1280) {
+    return 4;
+  }
+
+  if (window.innerWidth >= 1024) {
+    return 3;
+  }
+
+  if (window.innerWidth >= 640) {
+    return 2;
+  }
+
+  return 1;
+}
+
 function GalleryGrid() {
   const [activeCategory, setActiveCategory] = useState<"All" | GalleryCategory>(
     "All",
@@ -39,6 +59,12 @@ function GalleryGrid() {
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
 
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_BATCH);
+
+  const [columnCount, setColumnCount] = useState(getColumnCount);
+
+  const loadMoreRef = useRef<HTMLDivElement | null>(null);
+
+  const isLoadingRef = useRef(false);
 
   const peopleOptions = useMemo(() => {
     const people = new Set<string>();
@@ -87,6 +113,35 @@ function GalleryGrid() {
     [filteredImages, visibleCount],
   );
 
+  /*
+   * Stable masonry:
+   *
+   * Each item is assigned to a column by its index.
+   * When more images are appended, existing items
+   * remain in the exact same column and position.
+   *
+   * This is the important difference from CSS columns.
+   */
+  const masonryColumns = useMemo(() => {
+    const columns: Array<
+      Array<{
+        image: GalleryImage;
+        filteredIndex: number;
+      }>
+    > = Array.from({ length: columnCount }, () => []);
+
+    visibleImages.forEach((image, index) => {
+      const targetColumn = index % columnCount;
+
+      columns[targetColumn].push({
+        image,
+        filteredIndex: index,
+      });
+    });
+
+    return columns;
+  }, [visibleImages, columnCount]);
+
   const hasMore = visibleCount < filteredImages.length;
 
   const closeLightbox = useCallback(() => {
@@ -113,6 +168,27 @@ function GalleryGrid() {
     });
   }, [filteredImages.length]);
 
+  /*
+   * Responsive column count.
+   *
+   * Existing items only get rearranged if the actual
+   * viewport breakpoint changes, not while scrolling.
+   */
+  useEffect(() => {
+    const handleResize = () => {
+      setColumnCount(getColumnCount());
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  /*
+   * Keyboard controls + body scroll lock for lightbox.
+   */
   useEffect(() => {
     if (activeImageIndex === null) {
       return;
@@ -143,10 +219,74 @@ function GalleryGrid() {
     };
   }, [activeImageIndex, closeLightbox, showNext, showPrevious]);
 
+  /*
+   * Reset progressive rendering when filters change.
+   */
   useEffect(() => {
     setActiveImageIndex(null);
     setVisibleCount(ITEMS_PER_BATCH);
+    isLoadingRef.current = false;
   }, [activeCategory, activePerson, searchQuery]);
+
+  /*
+   * Automatic progressive loading.
+   *
+   * The sentinel sits BELOW the masonry.
+   * Once the user approaches it, the next batch
+   * is appended.
+   *
+   * Existing cards never get inserted above.
+   */
+  useEffect(() => {
+    const target = loadMoreRef.current;
+
+    if (!target || !hasMore) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting || isLoadingRef.current) {
+          return;
+        }
+
+        isLoadingRef.current = true;
+
+        setVisibleCount((current) =>
+          Math.min(current + ITEMS_PER_BATCH, filteredImages.length),
+        );
+
+        /*
+         * Prevent repeated observer firing in the
+         * same paint cycle.
+         */
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            isLoadingRef.current = false;
+          });
+        });
+      },
+      {
+        root: null,
+
+        /*
+         * Start fetching shortly before the user
+         * reaches the actual end.
+         *
+         * Not the huge 600px buffer we used before.
+         */
+        rootMargin: "120px 0px",
+
+        threshold: 0,
+      },
+    );
+
+    observer.observe(target);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [hasMore, filteredImages.length, visibleCount]);
 
   const activeImage: GalleryImage | undefined =
     activeImageIndex !== null ? filteredImages[activeImageIndex] : undefined;
@@ -157,15 +297,10 @@ function GalleryGrid() {
     setSearchQuery("");
   };
 
-  const loadMore = () => {
-    setVisibleCount((current) =>
-      Math.min(current + ITEMS_PER_BATCH, filteredImages.length),
-    );
-  };
-
   return (
     <>
       <section className="container pb-24">
+        {/* SEARCH + CATEGORY FILTERS */}
         <div className="mb-8 grid gap-5 xl:grid-cols-[1fr_auto] xl:items-center">
           <div className="max-w-xl">
             <label htmlFor="gallery-search" className="sr-only">
@@ -211,6 +346,7 @@ function GalleryGrid() {
           </div>
         </div>
 
+        {/* PEOPLE FILTER */}
         <div className="mb-10 flex flex-wrap items-center gap-3">
           <div className="flex items-center gap-3 rounded-full border border-[var(--color-border)] bg-white px-4 py-2 shadow-[var(--shadow-small)]">
             <Users size={17} className="text-[var(--color-primary)]" />
@@ -251,93 +387,100 @@ function GalleryGrid() {
           </p>
         </div>
 
-        <div className="columns-1 gap-4 sm:columns-2 lg:columns-3 xl:columns-4">
-          {visibleImages.map((image, index) => {
-            const isVideo = image.type === "video";
+        {/* STABLE MASONRY */}
+        <div
+          className="grid items-start gap-4"
+          style={{
+            gridTemplateColumns: `repeat(${columnCount}, minmax(0, 1fr))`,
+          }}
+        >
+          {masonryColumns.map((column, columnIndex) => (
+            <div key={columnIndex} className="flex min-w-0 flex-col gap-4">
+              {column.map(({ image, filteredIndex }) => {
+                const isVideo = image.type === "video";
 
-            return (
-              <button
-                key={image.id}
-                type="button"
-                onClick={() => setActiveImageIndex(index)}
-                className="group relative mb-4 block w-full break-inside-avoid overflow-hidden rounded-[var(--radius-medium)] border border-[var(--color-border)] bg-white text-left shadow-[var(--shadow-small)] transition hover:-translate-y-1 hover:shadow-[var(--shadow-medium)]"
-              >
-                <div className="relative overflow-hidden">
-                  <MediaAsset
-                    type={image.type ?? "image"}
-                    src={image.src}
-                    alt={image.alt}
-                    poster={image.poster}
-                    preview
-                    loading="lazy"
-                    className="h-auto min-h-[180px] w-full object-cover transition duration-500 group-hover:scale-[1.03]"
-                  />
+                return (
+                  <button
+                    key={image.id}
+                    type="button"
+                    onClick={() => setActiveImageIndex(filteredIndex)}
+                    className="group relative block w-full overflow-hidden rounded-[var(--radius-medium)] border border-[var(--color-border)] bg-white text-left shadow-[var(--shadow-small)] transition hover:-translate-y-1 hover:shadow-[var(--shadow-medium)]"
+                  >
+                    <div className="relative overflow-hidden">
+                      <MediaAsset
+                        type={image.type ?? "image"}
+                        src={image.src}
+                        alt={image.alt}
+                        poster={image.poster}
+                        preview
+                        loading="lazy"
+                        className="h-auto min-h-[180px] w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                      />
 
-                  {isVideo && (
-                    <div className="absolute left-4 top-4 flex items-center gap-2 rounded-full bg-black/45 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-md">
-                      <Play size={12} fill="currentColor" />
-                      Video
-                    </div>
-                  )}
-
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/5 to-transparent opacity-70 transition group-hover:opacity-100" />
-
-                  <div className="pointer-events-none absolute inset-x-0 bottom-0 p-5 text-white">
-                    <div className="flex flex-wrap gap-2">
-                      {image.featured && (
-                        <span className="rounded-full bg-white/15 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] backdrop-blur-md">
-                          Highlight
-                        </span>
+                      {isVideo && (
+                        <div className="absolute left-4 top-4 flex items-center gap-2 rounded-full bg-black/45 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-md">
+                          <Play size={12} fill="currentColor" />
+                          Video
+                        </div>
                       )}
 
-                      {image.year && (
-                        <span className="rounded-full bg-white/15 px-2.5 py-1 text-[10px] font-semibold backdrop-blur-md">
-                          {image.year}
-                        </span>
-                      )}
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/5 to-transparent opacity-70 transition group-hover:opacity-100" />
+
+                      <div className="pointer-events-none absolute inset-x-0 bottom-0 p-5 text-white">
+                        <div className="flex flex-wrap gap-2">
+                          {image.featured && (
+                            <span className="rounded-full bg-white/15 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] backdrop-blur-md">
+                              Highlight
+                            </span>
+                          )}
+
+                          {image.year && (
+                            <span className="rounded-full bg-white/15 px-2.5 py-1 text-[10px] font-semibold backdrop-blur-md">
+                              {image.year}
+                            </span>
+                          )}
+                        </div>
+
+                        {image.title && (
+                          <h2 className="mt-3 text-xl font-bold tracking-[-0.03em]">
+                            {image.title}
+                          </h2>
+                        )}
+
+                        {image.caption && (
+                          <p className="mt-2 line-clamp-2 text-sm leading-6 text-white/70">
+                            {image.caption}
+                          </p>
+                        )}
+
+                        {image.people && image.people.length > 0 && (
+                          <p className="mt-3 text-xs font-medium text-white/55">
+                            {image.people.join(" · ")}
+                          </p>
+                        )}
+                      </div>
                     </div>
-
-                    {image.title && (
-                      <h2 className="mt-3 text-xl font-bold tracking-[-0.03em]">
-                        {image.title}
-                      </h2>
-                    )}
-
-                    {image.caption && (
-                      <p className="mt-2 line-clamp-2 text-sm leading-6 text-white/70">
-                        {image.caption}
-                      </p>
-                    )}
-
-                    {image.people && image.people.length > 0 && (
-                      <p className="mt-3 text-xs font-medium text-white/55">
-                        {image.people.join(" · ")}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              </button>
-            );
-          })}
+                  </button>
+                );
+              })}
+            </div>
+          ))}
         </div>
 
+        {/* AUTO-LOAD SENTINEL */}
         {hasMore && (
-          <div className="mt-10 flex flex-col items-center gap-3">
-            <button
-              type="button"
-              onClick={loadMore}
-              className="rounded-full border border-[var(--color-border)] bg-white px-6 py-3 text-sm font-semibold shadow-[var(--shadow-small)] transition hover:-translate-y-0.5 hover:border-[var(--color-text)] hover:shadow-[var(--shadow-medium)]"
-            >
-              Load more
-            </button>
-
-            <p className="text-xs text-[var(--color-text-muted)]">
-              Showing {Math.min(visibleCount, filteredImages.length)} of{" "}
-              {filteredImages.length}
-            </p>
+          <div
+            ref={loadMoreRef}
+            className="mt-6 flex h-8 items-center justify-center"
+            aria-hidden="true"
+          >
+            <span className="text-xs text-[var(--color-text-muted)]">
+              Loading more moments...
+            </span>
           </div>
         )}
 
+        {/* EMPTY STATE */}
         {filteredImages.length === 0 && (
           <div className="rounded-[var(--radius-large)] border border-dashed border-[var(--color-border)] bg-white p-12 text-center">
             <p className="text-lg font-semibold">No media matches this view.</p>
@@ -357,6 +500,7 @@ function GalleryGrid() {
         )}
       </section>
 
+      {/* LIGHTBOX */}
       {activeImage && activeImageIndex !== null && (
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 backdrop-blur-sm"
