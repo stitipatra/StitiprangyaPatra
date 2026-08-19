@@ -265,8 +265,8 @@ const brotherImages = createImages(["20220807_144059_result.webp"], {
 const udayRiyanshiFamily = createImages(["20260410_210644_result.webp"], {
   title: "Family & Friends",
   category: "People",
-  tags: ["Family", "Friends"],
-  people: ["Family", "Friends", "Uday", "Riyanshi"],
+  tags: ["Friends"],
+  people: ["Friends", "Uday", "Riyanshi"],
 });
 
 /* -------------------------------------------------------------------------- */
@@ -595,7 +595,7 @@ const travelImages = createImages(
 /*                                   ARTWORK                                  */
 /* -------------------------------------------------------------------------- */
 
-const artworkImages = createImages(["IMG-20210114-WA0041_result.webp"], {
+const artworkImages = createImages(["IMG-20210114-WA0041_result.jpg"], {
   title: "Artwork",
   category: "Activity",
   tags: ["Artwork", "Creative"],

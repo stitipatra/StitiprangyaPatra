@@ -29,9 +29,12 @@ function ContactLinks() {
 
           <div className="mt-8">
             <a href={`mailto:${siteConfig.email}`}>
-              <Button className="bg-white text-black hover:bg-white/90">
-                <Mail size={18} />
-                Email me
+              <Button
+                variant="secondary"
+                className="!border-white !bg-white !text-neutral-950 hover:!bg-neutral-100 hover:!text-neutral-950"
+              >
+                <Mail size={18} className="!text-neutral-950" />
+                <span className="!text-neutral-950">Email me</span>
               </Button>
             </a>
           </div>
@@ -57,6 +60,7 @@ function ContactLinks() {
             </div>
 
             <h3 className="mt-7 text-2xl font-bold">LinkedIn</h3>
+
             <p className="mt-2 text-[var(--color-text-muted)]">
               Experience, updates and professional connections.
             </p>
@@ -76,6 +80,7 @@ function ContactLinks() {
             </div>
 
             <h3 className="mt-7 text-2xl font-bold">GitHub</h3>
+
             <p className="mt-2 text-[var(--color-text-muted)]">
               Projects, experiments and engineering work.
             </p>
@@ -88,6 +93,7 @@ function ContactLinks() {
             className="rounded-[var(--radius-medium)] border border-[var(--color-border)] bg-white p-6 shadow-[var(--shadow-small)] transition hover:-translate-y-1 hover:shadow-[var(--shadow-medium)]"
           >
             <h3 className="text-xl font-bold">Strava</h3>
+
             <p className="mt-2 text-[var(--color-text-muted)]">
               Running, training and the occasional painful 10K.
             </p>
@@ -100,6 +106,7 @@ function ContactLinks() {
             className="rounded-[var(--radius-medium)] border border-[var(--color-border)] bg-white p-6 shadow-[var(--shadow-small)] transition hover:-translate-y-1 hover:shadow-[var(--shadow-medium)]"
           >
             <h3 className="text-xl font-bold">Chess.com</h3>
+
             <p className="mt-2 text-[var(--color-text-muted)]">
               Rapid, blitz and a rating around 1600.
             </p>
