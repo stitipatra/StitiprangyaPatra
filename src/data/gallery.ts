@@ -652,6 +652,7 @@ export const galleryImages: GalleryImage[] = [
   ...dpsTeacherImages,
 
   ...artworkImages,
+  ...islFinalImages,
 
   /*
    * VIDEO EXAMPLE
