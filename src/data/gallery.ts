@@ -227,6 +227,16 @@ function createSisterImages(): GalleryImage[] {
   });
 }
 
+const allSisterImages = createSisterImages();
+
+const rupaliImages = allSisterImages.filter((image) =>
+  image.people?.includes("Rupali Di"),
+);
+
+const diyaImages = allSisterImages.filter((image) =>
+  image.people?.includes("Diya"),
+);
+
 /* -------------------------------------------------------------------------- */
 /*                                   FAMILY                                   */
 /* -------------------------------------------------------------------------- */
@@ -611,65 +621,65 @@ const islFinalImages = createImages(["IMG-20230318-WA0023_result.webp"], {
   tags: ["Football", "Sports", "ISL"],
 });
 
+function interleaveGalleryGroups(groups: GalleryImage[][]): GalleryImage[] {
+  const result: GalleryImage[] = [];
+  const seen = new Set<string>();
+
+  const maxLength = Math.max(...groups.map((group) => group.length));
+
+  for (let i = 0; i < maxLength; i++) {
+    for (const group of groups) {
+      const image = group[i];
+
+      if (image && !seen.has(image.id)) {
+        result.push(image);
+        seen.add(image.id);
+      }
+    }
+  }
+
+  return result;
+}
+
 /* -------------------------------------------------------------------------- */
 /*                                 FINAL ARRAY                                */
 /* -------------------------------------------------------------------------- */
 
-export const galleryImages: GalleryImage[] = [
-  ...createSisterImages(),
+export const galleryImages: GalleryImage[] = interleaveGalleryGroups([
+  // Closest people / personal memories
+  familyImages,
+  rupaliImages,
+  diyaImages,
+  mumImages,
+  brotherImages,
 
-  ...familyImages,
-  ...mumImages,
-  ...brotherImages,
-  ...udayRiyanshiFamily,
+  // Sports, friends & college
+  footballImages,
+  friendsImages,
+  graduationImages,
+  bitsFootballImages,
 
-  ...diwaliImages,
+  // Travel & adventure
+  goaImages,
+  kayakingImages,
+  udaipurImages,
+  paraglidingImages,
+  dharamshalaImages,
+  parasailingImages,
+  raftingImages,
+  travelImages,
 
-  ...friendsImages,
-  ...rishabhImages,
+  // Running, BITS & school
+  runningImages,
+  bitsGoaImages,
+  dpsImages,
+  dpsFriendsImages,
+  dpsTeacherImages,
 
-  ...udaipurImages,
-  ...goaImages,
-  ...dharamshalaImages,
-  ...travelImages,
-
-  ...graduationImages,
-
-  ...kayakingImages,
-  ...parasailingImages,
-  ...paraglidingImages,
-  ...raftingImages,
-
-  ...runningImages,
-
-  ...footballImages,
-  ...bitsFootballImages,
-
-  ...bitsGoaImages,
-
-  ...dpsImages,
-  ...dpsFriendsImages,
-  ...dpsTeacherImages,
-
-  ...artworkImages,
-  ...islFinalImages,
-
-  /*
-   * VIDEO EXAMPLE
-   *
-   * {
-   *   id: "paragliding-video",
-   *   type: "video",
-   *
-   *   src: "/videos/media/paragliding.mp4",
-   *   poster: "/images/media/paragliding-poster.webp",
-   *
-   *   alt: "Paragliding flight",
-   *   title: "Paragliding",
-   *
-   *   category: "Activity",
-   *
-   *   tags: ["Travel", "Adventure", "Paragliding"],
-   * }
-   */
-];
+  // Other memories
+  rishabhImages,
+  udayRiyanshiFamily,
+  diwaliImages,
+  artworkImages,
+  islFinalImages,
+]);
