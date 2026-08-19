@@ -25,6 +25,8 @@ const categoryOptions: Array<"All" | GalleryCategory> = [
   "Milestone",
 ];
 
+const ITEMS_PER_BATCH = 20;
+
 function GalleryGrid() {
   const [activeCategory, setActiveCategory] = useState<"All" | GalleryCategory>(
     "All",
@@ -35,6 +37,8 @@ function GalleryGrid() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
+
+  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_BATCH);
 
   const peopleOptions = useMemo(() => {
     const people = new Set<string>();
@@ -77,6 +81,13 @@ function GalleryGrid() {
       return matchesCategory && matchesPerson && matchesSearch;
     });
   }, [activeCategory, activePerson, searchQuery]);
+
+  const visibleImages = useMemo(
+    () => filteredImages.slice(0, visibleCount),
+    [filteredImages, visibleCount],
+  );
+
+  const hasMore = visibleCount < filteredImages.length;
 
   const closeLightbox = useCallback(() => {
     setActiveImageIndex(null);
@@ -132,8 +143,14 @@ function GalleryGrid() {
     };
   }, [activeImageIndex, closeLightbox, showNext, showPrevious]);
 
+  /*
+   * Whenever filtering changes, start again with
+   * the first batch instead of leaving 80+ cards
+   * mounted from a previous view.
+   */
   useEffect(() => {
     setActiveImageIndex(null);
+    setVisibleCount(ITEMS_PER_BATCH);
   }, [activeCategory, activePerson, searchQuery]);
 
   const activeImage: GalleryImage | undefined =
@@ -143,6 +160,12 @@ function GalleryGrid() {
     setActiveCategory("All");
     setActivePerson("Everyone");
     setSearchQuery("");
+  };
+
+  const loadMore = () => {
+    setVisibleCount((current) =>
+      Math.min(current + ITEMS_PER_BATCH, filteredImages.length),
+    );
   };
 
   return (
@@ -234,7 +257,7 @@ function GalleryGrid() {
         </div>
 
         <div className="columns-1 gap-4 sm:columns-2 lg:columns-3 xl:columns-4">
-          {filteredImages.map((image, index) => {
+          {visibleImages.map((image, index) => {
             const isVideo = image.type === "video";
 
             return (
@@ -251,6 +274,7 @@ function GalleryGrid() {
                     alt={image.alt}
                     poster={image.poster}
                     preview
+                    loading="lazy"
                     className="h-auto min-h-[180px] w-full object-cover transition duration-500 group-hover:scale-[1.03]"
                   />
 
@@ -301,6 +325,23 @@ function GalleryGrid() {
             );
           })}
         </div>
+
+        {hasMore && (
+          <div className="mt-10 flex flex-col items-center gap-3">
+            <button
+              type="button"
+              onClick={loadMore}
+              className="rounded-full border border-[var(--color-border)] bg-white px-6 py-3 text-sm font-semibold shadow-[var(--shadow-small)] transition hover:-translate-y-0.5 hover:border-[var(--color-text)] hover:shadow-[var(--shadow-medium)]"
+            >
+              Load more
+            </button>
+
+            <p className="text-xs text-[var(--color-text-muted)]">
+              Showing {Math.min(visibleCount, filteredImages.length)} of{" "}
+              {filteredImages.length}
+            </p>
+          </div>
+        )}
 
         {filteredImages.length === 0 && (
           <div className="rounded-[var(--radius-large)] border border-dashed border-[var(--color-border)] bg-white p-12 text-center">
