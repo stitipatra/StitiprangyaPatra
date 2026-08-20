@@ -17,6 +17,12 @@ export interface AchievementItem {
 
   link?: string;
   linkLabel?: string;
+  
+  links?: {
+    label: string;
+    url: string;
+  }[];
+  
   image?: string;
   imagePosition?: string;
 
@@ -31,12 +37,23 @@ export const achievements: AchievementItem[] = [
     category: "Sports",
 
     description:
-      "Competed at the state level in football and later represented BITS Pilani Goa across inter-college competitions.",
+      "Competed at the state level in football, with match records available through AIFF and Reliance Foundation Youth Sports, and later represented BITS Pilani Goa across inter-college competitions.",
 
     highlights: [
       "State-level football",
       "Core member of BITS Football Club",
       "Goa State Football League participation",
+    ],
+
+    links: [
+      {
+        label: "AIFF match record",
+        url: "https://www.the-aiff.com/match-center/cms/23294",
+      },
+      {
+        label: "Reliance Foundation match record",
+        url: "https://www.rfyouthsports.com/football/2022-2023/matchcentre-29104",
+      },
     ],
 
     image: "/images/media/IMG-20231121-WA0015_result.webp",
