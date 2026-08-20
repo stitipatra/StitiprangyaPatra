@@ -127,22 +127,23 @@ function AchievementsGrid() {
                 {achievement.description}
               </p>
 
-              {achievement.highlights && achievement.highlights.length > 0 && (
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {achievement.highlights.map((highlight) => (
-                    <span
-                      key={highlight}
-                      className={`rounded-full px-3 py-1.5 text-sm font-medium ${
-                        achievement.featured
-                          ? "border border-white/10 bg-white/5 text-white/75"
-                          : "border border-[var(--color-border)] bg-[var(--color-background)]"
-                      }`}
-                    >
-                      {highlight}
-                    </span>
-                  ))}
-                </div>
-              )}
+              {achievement.highlights &&
+                achievement.highlights.length > 0 && (
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    {achievement.highlights.map((highlight) => (
+                      <span
+                        key={highlight}
+                        className={`rounded-full px-3 py-1.5 text-sm font-medium ${
+                          achievement.featured
+                            ? "border border-white/10 bg-white/5 text-white/75"
+                            : "border border-[var(--color-border)] bg-[var(--color-background)]"
+                        }`}
+                      >
+                        {highlight}
+                      </span>
+                    ))}
+                  </div>
+                )}
 
               {achievement.link && (
                 <a
@@ -158,6 +159,27 @@ function AchievementsGrid() {
                   {achievement.linkLabel ?? "View recognition"}
                   <ExternalLink size={15} />
                 </a>
+              )}
+
+              {achievement.links && achievement.links.length > 0 && (
+                <div className="mt-7 flex flex-wrap gap-3">
+                  {achievement.links.map((link) => (
+                    <a
+                      key={link.url}
+                      href={link.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-sm font-semibold transition hover:-translate-y-0.5 ${
+                        achievement.featured
+                          ? "border-white/15 bg-white/5 text-white hover:bg-white/10"
+                          : "border-[var(--color-border)] bg-white text-[var(--color-primary)] hover:shadow-[var(--shadow-small)]"
+                      }`}
+                    >
+                      {link.label}
+                      <ExternalLink size={14} />
+                    </a>
+                  ))}
+                </div>
               )}
             </div>
           </article>
